@@ -7,6 +7,7 @@ import 'firebase/database'
 class App extends React.Component {
 	state = {
 		stress: 0,
+		faceClicked: ""
 	}
 
 	constructor(props) {
@@ -14,6 +15,7 @@ class App extends React.Component {
 
 		this.handleAddStress = this.handleAddStress.bind(this)
 		this.handleDecreaseStress = this.handleDecreaseStress.bind(this)
+		this.handleFaceClick = this.handleFaceClick.bind(this)
 	}
 
 	componentDidMount() {
@@ -58,6 +60,10 @@ class App extends React.Component {
 		})
 	}
 
+	handleFaceClick(face) {
+		this.setState({ faceClicked: face });
+	}
+
 	render() {
 		return (
 			<>
@@ -71,6 +77,11 @@ class App extends React.Component {
 				<button onClick={this.handleAddStress}>add stress</button>
 				<button onClick={this.handleDecreaseStress}>decrease stress</button>
 				<h3>{this.state.stress}</h3>
+				<h1> -- FOR THE 8X8 LED GRID -- </h1>
+				<button onClick={() => this.handleFaceClick(":]")}>:]</button>
+				<button onClick={() => this.handleFaceClick(":[")}>:[</button>
+				<button onClick={() => this.handleFaceClick("uwu")}>uwu</button>
+				<h3>button clicked: {this.state.faceClicked}</h3>
 			</>
 		)
 	}
