@@ -7,7 +7,7 @@ import 'firebase/database'
 class App extends React.Component {
 	state = {
 		stress: 0,
-		faceClicked: ""
+		faceClicked: '',
 	}
 
 	constructor(props) {
@@ -61,7 +61,18 @@ class App extends React.Component {
 	}
 
 	handleFaceClick(face) {
-		this.setState({ faceClicked: face });
+		let uri = ''
+		if (face === ':]') {
+			uri = 'smiley'
+		} else if (face === ':[') {
+			uri = 'sad'
+		} else {
+			uri = 'uwu'
+		}
+
+		fetch('http://localhost:8080/' + uri).then((res) => {
+			this.setState({ faceClicked: face })
+		})
 	}
 
 	render() {
@@ -78,9 +89,9 @@ class App extends React.Component {
 				<button onClick={this.handleDecreaseStress}>decrease stress</button>
 				<h3>{this.state.stress}</h3>
 				<h1> -- FOR THE 8X8 LED GRID -- </h1>
-				<button onClick={() => this.handleFaceClick(":]")}>:]</button>
-				<button onClick={() => this.handleFaceClick(":[")}>:[</button>
-				<button onClick={() => this.handleFaceClick("uwu")}>uwu</button>
+				<button onClick={() => this.handleFaceClick(':]')}>:]</button>
+				<button onClick={() => this.handleFaceClick(':[')}>:[</button>
+				<button onClick={() => this.handleFaceClick('uwu')}>uwu</button>
 				<h3>button clicked: {this.state.faceClicked}</h3>
 			</>
 		)
