@@ -4,6 +4,8 @@ import ReactDOM from 'react-dom'
 import * as firebase from 'firebase/app'
 import 'firebase/database'
 
+import Assignment from './Pages/Assignment'
+
 class App extends React.Component {
 	state = {
 		stress: 0,
@@ -98,4 +100,5 @@ class App extends React.Component {
 	}
 }
 
-ReactDOM.render(<App />, document.getElementById('root'))
+// ReactDOM.render(<App />, document.getElementById('root'))
+ReactDOM.render(<Assignment />, document.getElementById('root'))
