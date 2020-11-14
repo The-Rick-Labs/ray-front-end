@@ -7,7 +7,7 @@ class TaskList extends React.Component {
         return (
             <div>
                 {this.props.data.map((task, i) => {
-                    return <Task key={i} data = {task}/>
+                    return <Task key={i} data = {task} handleClick={this.props.handleClick}/>
                 })}
             </div>
 
