@@ -1,10 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Ray from './components/Ray';
 
-
-import * as firebase from 'firebase/app'
 import 'firebase/database'
+import * as firebase from 'firebase/app'
+
+import Ray from './components/Ray'
+import Calendar from './components/Calendar'
 
 class App extends React.Component {
 	state = {
@@ -97,6 +98,7 @@ class App extends React.Component {
 				<h3>button clicked: {this.state.faceClicked}</h3>
 
 				<Ray></Ray>
+				<Calendar />
 			</>
 		)
 	}
