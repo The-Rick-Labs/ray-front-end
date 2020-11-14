@@ -95,10 +95,11 @@ class App extends React.Component {
 				<button onClick={() => this.handleFaceClick(':[')}>:[</button>
 				<button onClick={() => this.handleFaceClick('uwu')}>uwu</button>
 				<h3>button clicked: {this.state.faceClicked}</h3>
+
+				<Assignment/>
 			</>
 		)
 	}
 }
 
-// ReactDOM.render(<App />, document.getElementById('root'))
-ReactDOM.render(<Assignment />, document.getElementById('root'))
+ReactDOM.render(<App />, document.getElementById('root'))

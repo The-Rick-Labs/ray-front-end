@@ -1,6 +1,7 @@
 import React from 'react'
 
 import TaskList from "../Components/TaskList"
+import QuoteBubble from "../Components/QuoteBubble"
 
 let data = [{
     id: 0,
@@ -60,16 +61,18 @@ class Assignment extends React.Component {
 
     render() {
         const yesno = (
-            <div>            
-                <p onClick={this.handleYes}>Yes</p><br/>
-                <p onClick={this.handleNo}>No</p>
+            <div>
+                <QuoteBubble handleClick={this.handleYes} message="Yes" />
+                <br/>
+                <QuoteBubble handleClick={this.handleNo} message="No" />
+
             </div>
         )
 
         return (
             <div>
                 <TaskList data = {data} handleClick={this.handleClick} />
-                {this.state.message}
+                {this.state.message ? <QuoteBubble message={this.state.message} /> : ""}
 
                 {this.state.message ? yesno : ""}
             </div>
