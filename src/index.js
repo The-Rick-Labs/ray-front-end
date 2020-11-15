@@ -73,7 +73,7 @@ class App extends React.Component {
 			uri = 'uwu'
 		}
 
-		fetch('http://localhost:8080/' + uri).then((res) => {
+		fetch('http://192.168.2.11:8080/' + uri).then((res) => {
 			this.setState({ faceClicked: face })
 		})
 	}
