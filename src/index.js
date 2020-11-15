@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import Ray from './components/Ray';
-
+import BackButton from '.components/BackButton';
 
 import * as firebase from 'firebase/app'
 import 'firebase/database'
@@ -80,6 +80,7 @@ class App extends React.Component {
 	render() {
 		return (
 			<>
+				<BackButton></BackButton>
 				<h1>
 					Hello,{' '}
 					<span role='img' aria-label='wave'>
