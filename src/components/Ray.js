@@ -26,27 +26,45 @@ class Ray extends React.Component{
         }));
         this.setMood();
 
-        this.state.cycleCounter++;
-        if(this.state.cycleCounter == 3) this.state.cycleCounter = 0
+        this.setState(state => ({
+            cycleCounter: this.state.cycleCounter + 1,
+        }));   
+
+        if(this.state.cycleCounter === 3) {
+            this.setState(state => ({
+                cycleCounter: 0,
+            }));  
+        }
     }
 
     setMood() {
         switch(this.state.currentMood) {
             case "happy":
-                this.state.currentImageSrc = ray_happy;
+                this.setState(state => ({
+                    currentImageSrc: ray_happy,
+                  }));                
                 break;
             case "mad":
-                this.state.currentImageSrc = ray_mad;
+                this.setState(state => ({
+                    currentImageSrc: ray_mad,
+                  }));   
                 break;
             case "sad":
-                this.state.currentImageSrc = ray_sad;
+                this.setState(state => ({
+                    currentImageSrc: ray_sad,
+                }));   
+                break;
+            default:
+                this.setState(state => ({
+                    currentImageSrc: ray_sad,
+                }));   
                 break;
         }
     }
 
     render() {
       return <div>
-                <img onClick={this.handleClick} src={this.state.currentImageSrc}></img>
+                <img alt="ray" onClick={this.handleClick} src={this.state.currentImageSrc}></img>
             </div>;
     }
   }
