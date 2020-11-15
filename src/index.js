@@ -7,6 +7,8 @@ import * as firebase from 'firebase/app'
 import Ray from './components/Ray'
 import Calendar from './components/Calendar'
 
+import Assignment from './Pages/Assignment'
+
 class App extends React.Component {
 	state = {
 		stress: 0,
@@ -95,7 +97,9 @@ class App extends React.Component {
 				<button onClick={() => this.handleFaceClick(':]')}>:]</button>
 				<button onClick={() => this.handleFaceClick(':[')}>:[</button>
 				<button onClick={() => this.handleFaceClick('uwu')}>uwu</button>
+				<h3>button clicked: {this.state.faceClicked}</h3>
 
+				<Assignment/>
 				<Ray></Ray>
 				<Calendar />
 			</>
