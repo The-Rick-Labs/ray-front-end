@@ -4,6 +4,7 @@ import 'firebase/database'
 import * as firebase from 'firebase/app'
 
 import Ray from './components/Ray'
+import BackButton from './components/BackButton'
 import Calendar from './components/Calendar'
 
 class App extends React.Component {
