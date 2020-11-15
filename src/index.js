@@ -1,11 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Ray from './components/Ray';
-import BackButton from './components/BackButton';
 
-
-import * as firebase from 'firebase/app'
 import 'firebase/database'
+import * as firebase from 'firebase/app'
+
+import Ray from './components/Ray'
+import Calendar from './components/Calendar'
 
 class App extends React.Component {
 	state = {
@@ -81,7 +81,6 @@ class App extends React.Component {
 	render() {
 		return (
 			<>
-				<BackButton></BackButton>
 				<h1>
 					Hello,{' '}
 					<span role='img' aria-label='wave'>
@@ -98,6 +97,7 @@ class App extends React.Component {
 				<button onClick={() => this.handleFaceClick('uwu')}>uwu</button>
 
 				<Ray></Ray>
+				<Calendar />
 			</>
 		)
 	}
