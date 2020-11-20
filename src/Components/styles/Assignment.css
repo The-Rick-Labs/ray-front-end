@@ -1,0 +1,10 @@
+.assignmentPage {
+    background-image: url('../ray_images/Classroom.png');
+    background-size: 100%;
+
+    margin: 0;
+
+    /* width: 100vh; */
+    height: 100vh;
+
+}

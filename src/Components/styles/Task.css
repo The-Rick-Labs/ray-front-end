@@ -1,0 +1,51 @@
+.task {
+    background: #FFFFFF;
+    box-shadow: 5px 0px 4px rgba(0, 0, 0, 0.1), 0px 5px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.name {
+    font-family: sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 18px;
+    display: flex;
+    align-items: center;
+
+    color: #000000;
+}
+
+.dueDate {
+    font-family: sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+    display: flex;
+    align-items: center;
+
+    color: #665E5E;
+
+    margin-right: 10px;
+}
+
+.check {
+    width: 17px;
+    height: 17px;
+    margin-right: 8px;
+}
+
+.title {
+    display: flex;
+    justify-content: left;
+
+    align-items: center;
+
+    margin-left: 17px;
+}

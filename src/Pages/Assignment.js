@@ -1,7 +1,9 @@
 import React from 'react'
 
-import TaskList from '../components/TaskList'
-import QuoteBubble from '../components/QuoteBubble'
+import TaskList from '../Components/TaskList'
+import QuoteBubble from '../Components/QuoteBubble'
+
+import '../Components/styles/Assignment.css'
 
 let data = [
 	{
@@ -22,11 +24,68 @@ let data = [
 		dueDate: 'Nov 16, 2020',
 		complete: false,
 	},
+
+	{
+		id: 3,
+		name: 'Task 1',
+		dueDate: 'Nov 14, 2020',
+		complete: false,
+	},
+	{
+		id: 4,
+		name: 'Task 2',
+		dueDate: 'Nov 15, 2020',
+		complete: false,
+	},
+	{
+		id: 5,
+		name: 'Task 3',
+		dueDate: 'Nov 16, 2020',
+		complete: false,
+	},
+
+	{
+		id: 6,
+		name: 'Task 1',
+		dueDate: 'Nov 14, 2020',
+		complete: false,
+	},
+	{
+		id: 7,
+		name: 'Task 2',
+		dueDate: 'Nov 15, 2020',
+		complete: false,
+	},
+	{
+		id: 8,
+		name: 'Task 3',
+		dueDate: 'Nov 16, 2020',
+		complete: false,
+	},
+	{
+		id: 9,
+		name: 'Task 1',
+		dueDate: 'Nov 14, 2020',
+		complete: false,
+	},
+	{
+		id: 10,
+		name: 'Task 2',
+		dueDate: 'Nov 15, 2020',
+		complete: false,
+	},
+	{
+		id: 11,
+		name: 'Task 3',
+		dueDate: 'Nov 16, 2020',
+		complete: false,
+	},
 ]
 class Assignment extends React.Component {
 	state = {
 		message: null,
 		currentTask: null,
+		showTasks: true
 	}
 
 	constructor(props) {
@@ -70,8 +129,13 @@ class Assignment extends React.Component {
 		)
 
 		return (
-			<div>
-				<TaskList data={data} handleClick={this.handleClick} />
+			<div className = 'assignmentPage' >
+				<button onClick={() => {this.setState({showTasks: !this.state.showTasks})}} >Task List</button>
+
+				
+				{this.state.showTasks ? <TaskList data={data} handleClick={this.handleClick} /> : ''}
+
+
 				{this.state.message ? <QuoteBubble message={this.state.message} /> : ''}
 
 				{this.state.message ? yesno : ''}

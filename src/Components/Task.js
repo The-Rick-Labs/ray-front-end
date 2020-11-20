@@ -1,25 +1,32 @@
 import React from 'react'
+import './styles/Task.css'
+
+import Checked from './ray_images/Checked.png'
+import Unchecked from './ray_images/Unchecked.png'
 
 class Task extends React.Component {
     render() {
-        let name
+        let check
 
         if (this.props.data.complete) {
-            name = (
-                <h3>√  {this.props.data.name}</h3>
+            check = (
+                <img className='check' alt="checked" src={Checked}></img>
             )
         } else {
-            name = (
-                <h3 onClick={() => this.props.handleClick(this.props.data.id)}>{this.props.data.name}</h3>
+            check = (
+                <img className='check' alt="unchecked" src={Unchecked}></img>
             )
         }
 
 
         return (
-            <div>
-                {name}
-                {this.props.data.dueDate} <br/>
-                {this.props.data.complete}
+            <div className = 'task' onClick={() => this.props.handleClick(this.props.data.id)} >
+                <div className='title' >
+                    {check}                 
+                    <p className='name' >{this.props.data.name}</p>
+                </div>
+
+                <p className= 'dueDate' >Due: {this.props.data.dueDate}</p>
             </div>
         )
     }

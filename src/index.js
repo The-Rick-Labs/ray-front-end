@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom'
 import 'firebase/database'
 import * as firebase from 'firebase/app'
 
-import Ray from './components/Ray'
-import BackButton from './components/BackButton'
-import Calendar from './components/Calendar'
+import Ray from './Components/Ray'
+import BackButton from './Components/BackButton'
+import Calendar from './Components/Calendar'
 
 import Assignment from './Pages/Assignment'
 
@@ -83,7 +83,7 @@ class App extends React.Component {
 	render() {
 		return (
 			<>
-				<BackButton></BackButton>
+				{/* <BackButton></BackButton>
 				<h1>
 					Hello,{' '}
 					<span role='img' aria-label='wave'>
@@ -98,11 +98,11 @@ class App extends React.Component {
 				<button onClick={() => this.handleFaceClick(':]')}>:]</button>
 				<button onClick={() => this.handleFaceClick(':[')}>:[</button>
 				<button onClick={() => this.handleFaceClick('uwu')}>uwu</button>
-				<h3>button clicked: {this.state.faceClicked}</h3>
+				<h3>button clicked: {this.state.faceClicked}</h3> */}
 
 				<Assignment />
-				<Ray></Ray>
-				<Calendar />
+				{/* <Ray></Ray>
+				<Calendar /> */}
 			</>
 		)
 	}

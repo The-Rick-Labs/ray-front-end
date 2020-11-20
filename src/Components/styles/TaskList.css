@@ -1,0 +1,40 @@
+.taskList {
+    width: 38.3%;
+    height: 100vh;
+    float: right;
+    background: #FFFFFF;
+    box-shadow: -5px 0px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 10px 0px 0px 10px;
+}
+
+.task {
+    margin-bottom: 15px;
+}
+
+.date {
+    font-family: sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 23px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+
+    color: #000000;
+}
+
+.dateTitle {
+    border-radius: 10px 0px 0px 0px;
+    margin-left: 0;
+    padding-top: 2%;
+    border-bottom: 1px black solid;
+    margin-bottom: 15px;
+    height: 15%;
+    justify-self: center;
+}
+
+.taskDiv {
+    height: 80%;
+    overflow-y: scroll;
+}
