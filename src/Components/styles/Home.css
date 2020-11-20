@@ -1,0 +1,40 @@
+* {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+body {
+    background-image: url("../ray_images/rayHomeBG.png");
+    background-position: 100% 105%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#homeNavBar {
+    width: 100%;
+    height: 10vw;
+    background-color: #2e631c;
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: center;
+}
+
+#homeNavBar > div {
+    width: 18%;
+    height: 60%;
+    margin: auto;
+    align-items: center;
+    background-color: white;
+    border-radius: 100px;
+    justify-content: center;
+    font-size: 60px;
+}
+
+#homeNavBar > div:hover {
+    cursor: pointer;
+    background-color: #EAEAEA;
+}
