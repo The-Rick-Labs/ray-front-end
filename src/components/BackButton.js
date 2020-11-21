@@ -19,16 +19,24 @@ class BackButton extends React.Component{
         /*
             code for going back to main page?
          */
-        this.state.cycleCounter++;
-        if (this.state.cycleCounter == 3) this.state.cycleCounter = 0;
-        this.setState({
+        this.setState(state => ({
+            cycleCounter: state.cycleCounter + 1
+        }));
+
+        if (this.state.cycleCounter === 3) {
+            this.setState(state => ({
+                cycleCounter: 0
+            }));
+        }
+
+        this.setState(state => ({
             currentColour: this.state.possibleColours[this.state.cycleCounter]
-        });
+        }));
     }
 
     render() {
         return <div>
-                <button class='back' onClick={this.handleClick} style={{'color': this.state.currentColour}}>🡠 BACK</button> 
+                <button onClick={this.handleClick} style={{'color': this.state.currentColour}}>🡠 BACK</button> 
             </div>;
     }
     

@@ -8,6 +8,7 @@ import BackButton from './components/BackButton'
 import Calendar from './components/Calendar'
 
 import Assignment from './Pages/Assignment'
+import Food from './Pages/Food'
 
 class App extends React.Component {
 	state = {
@@ -103,6 +104,7 @@ class App extends React.Component {
 				<Assignment />
 				<Ray></Ray>
 				<Calendar />
+				<Food />
 			</>
 		)
 	}
