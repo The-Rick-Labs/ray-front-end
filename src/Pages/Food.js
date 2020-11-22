@@ -1,10 +1,11 @@
 import React from 'react'
 
+import BackButton from '../components/BackButton'
 import FoodItem from '../components/FoodItem'
 import DropArea from '../components/DropArea'
-import food_item2 from '../components/other_images/food_item2.png'
+import food_item2 from '../components/ray_images/food_item2.png'
 
-import '../components/styles//FoodItem.css'
+import '../components/styles//Food.css'
 
 var fooditems = [];
 class Food extends React.Component {
@@ -53,11 +54,13 @@ class Food extends React.Component {
 
 		return (
 			<div>
-                <div>
-                    <p>Number of food left: {this.state.availableFood}</p>
+                <div id="foodHeader">
+                    <BackButton />
                 </div>
-                <DropArea onDragOver={ (e) => this.onDragOver(e) } onDrop={this.onDrop}/>
-                <div className='food_container'>
+                <div id="foodBody">
+                    <DropArea onDragOver={ (e) => this.onDragOver(e) } onDrop={this.onDrop}/>
+                </div>
+                <div id='food_container'>
 				    {fooditems}
                 </div>
                 
