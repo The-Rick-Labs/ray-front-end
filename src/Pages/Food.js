@@ -52,12 +52,19 @@ class Food extends React.Component {
         if (this.state.availableFood > 0) {
             for (var i = 0; i < this.state.availableFood; i++) {
                 fooditems.push(
-                   <FoodItem key={i} handleDrag={ (e) => this.onDragStart(e)} currentImageSrc={food_item1} /> 
+                    <FoodItem 
+                        key={i} 
+                        handleDrag={ (e) => this.onDragStart(e)} 
+                        currentImageSrc={food_item1} 
+                    /> 
                 );
             }
         } else {
             fooditems.push(
-                <FoodItem key={0} currentImageSrc={food_item3} /> 
+                <FoodItem 
+                    key={0} 
+                    currentImageSrc={food_item3} 
+                /> 
             )
         }
 
@@ -68,7 +75,10 @@ class Food extends React.Component {
                     <BackButton />
                 </div>
                 <div id="foodBody">
-                    <DropArea onDragOver={ (e) => this.onDragOver(e) } onDrop={this.onDrop} />
+                    <DropArea 
+                        onDragOver={ (e) => this.onDragOver(e) } 
+                        onDrop={this.onDrop} 
+                    />
                 </div>
                 <div id='food_container'>
 				    {fooditems}
