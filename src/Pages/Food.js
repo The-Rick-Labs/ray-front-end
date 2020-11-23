@@ -3,7 +3,10 @@ import React from 'react'
 import BackButton from '../components/BackButton'
 import FoodItem from '../components/FoodItem'
 import DropArea from '../components/DropArea'
+
+import food_item1 from '../components/ray_images/food_item1.png'
 import food_item2 from '../components/ray_images/food_item2.png'
+import food_item3 from '../components/ray_images/food_item3.png'
 
 import '../components/styles//Food.css'
 
@@ -46,11 +49,18 @@ class Food extends React.Component {
 
 	render() {
         fooditems = [];
-        for (var i = 0; i < this.state.availableFood; i++) {
+        if (this.state.availableFood > 0) {
+            for (var i = 0; i < this.state.availableFood; i++) {
+                fooditems.push(
+                   <FoodItem key={i} handleDrag={ (e) => this.onDragStart(e)} currentImageSrc={food_item1} /> 
+                );
+            }
+        } else {
             fooditems.push(
-               <FoodItem key={i} handleDrag={ (e) => this.onDragStart(e) }/> 
-            );
+                <FoodItem key={0} currentImageSrc={food_item3} /> 
+            )
         }
+
 
 		return (
 			<div>
@@ -58,7 +68,7 @@ class Food extends React.Component {
                     <BackButton />
                 </div>
                 <div id="foodBody">
-                    <DropArea onDragOver={ (e) => this.onDragOver(e) } onDrop={this.onDrop}/>
+                    <DropArea onDragOver={ (e) => this.onDragOver(e) } onDrop={this.onDrop} />
                 </div>
                 <div id='food_container'>
 				    {fooditems}
