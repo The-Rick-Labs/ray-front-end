@@ -69,7 +69,7 @@ class Food extends React.Component {
 
 
 		return (
-			<div>
+			<div id="food_page">
                 <div id="foodHeader">
                     <BackButton />
                 </div>

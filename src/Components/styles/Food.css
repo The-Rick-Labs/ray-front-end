@@ -9,10 +9,9 @@
     margin-top: 50px;
 }
 
-body {
+#food_page {
     background-image: url('../ray_images/rayFoodBG.png');
-    background-position: 0% 0%; 
-    /* presumably when this is the only thing on the screen the background will be where it's supposed to be */
+    background-position: 0% 0%;
     background-repeat: no-repeat;
     background-size: fit;
 }
