@@ -10,42 +10,41 @@ import food_item3 from '../components/ray_images/food_item3.png'
 
 import '../components/styles//Food.css'
 
-var fooditems = [];
+var fooditems = []
 class Food extends React.Component {
-
 	constructor(props) {
-        super(props);
-        this.state = {
-            availableFood: 3 //# of food changes over time? 
-            //or maybe every time the user finishes a task they get food to feed ray
-            //is that too complex lmao
-        }
-        this.onDragStart = this.onDragStart.bind(this);
-        this.onDragOver = this.onDragOver.bind(this);
-        this.onDrop = this.onDrop.bind(this);
-    }
+		super(props)
+		this.state = {
+			availableFood: 3, //# of food changes over time?
+			//or maybe every time the user finishes a task they get food to feed ray
+			//is that too complex lmao
+		}
+		this.onDragStart = this.onDragStart.bind(this)
+		this.onDragOver = this.onDragOver.bind(this)
+		this.onDrop = this.onDrop.bind(this)
+	}
 
-    componentDidMount() {
-        this.dragImg = new Image(0, 0);
-        this.dragImg.src = food_item2;
-    }
-    
-    onDragStart(e) {
-        e.dataTransfer.setDragImage(this.dragImg, 50, 50);
-    }
+	componentDidMount() {
+		this.dragImg = new Image(0, 0)
+		this.dragImg.src = food_item2
+	}
 
-    onDragOver(e) {
-        e.preventDefault();
-    }
+	onDragStart(e) {
+		e.dataTransfer.setDragImage(this.dragImg, 50, 50)
+	}
 
-    onDrop() {
-        this.setState(state => ({
-            availableFood: state.availableFood-1
-        }));
-        /*
+	onDragOver(e) {
+		e.preventDefault()
+	}
+
+	onDrop() {
+		this.setState((state) => ({
+			availableFood: state.availableFood - 1,
+		}))
+		/*
         update firebase hunger levels
         */
-    }
+	}
 
 	render() {
         fooditems = [];
@@ -83,7 +82,6 @@ class Food extends React.Component {
                 <div id='food_container'>
 				    {fooditems}
                 </div>
-                
 			</div>
 		)
 	}

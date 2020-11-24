@@ -2,6 +2,7 @@ import React from 'react'
 
 import TaskList from '../components/TaskList'
 import QuoteBubble from '../components/QuoteBubble'
+import Calendar from '../components/Calendar'
 
 let data = [
 	{
@@ -71,6 +72,7 @@ class Assignment extends React.Component {
 
 		return (
 			<div>
+				<Calendar />
 				<TaskList data={data} handleClick={this.handleClick} />
 				{this.state.message ? <QuoteBubble message={this.state.message} /> : ''}
 
