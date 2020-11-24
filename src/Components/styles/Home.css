@@ -13,28 +13,45 @@ body {
 
 #homeNavBar {
     width: 100%;
-    height: 10vw;
+    height: 160px;
     background-color: #2e631c;
     position: absolute;
     bottom: 0;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+#inHomeBar {
+    width: 80%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: auto;
+    align-items: center;
     text-align: center;
 }
 
-#homeNavBar > div {
-    width: 18%;
-    height: 60%;
+#inHomeBar div {
+    display:table;
+    width: 200px;
+    height: 80px;
+    line-height: 80px;
     margin: auto;
-    align-items: center;
+    padding: 20px 30px;
     background-color: white;
     border-radius: 100px;
-    justify-content: center;
     font-size: 60px;
 }
 
-#homeNavBar > div:hover {
+a {
+    text-decoration: none;
+    height: auto;
+    width: auto;
+}
+
+#inHomeBar div:hover {
     cursor: pointer;
     background-color: #EAEAEA;
 }
