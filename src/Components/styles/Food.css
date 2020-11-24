@@ -1,0 +1,18 @@
+.food_item {
+    position: absolute;
+    margin: 10px;
+}
+
+#drop_area {
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+
+body {
+    background-image: url('../ray_images/rayFoodBG.png');
+    background-position: 0% 0%; 
+    /* presumably when this is the only thing on the screen the background will be where it's supposed to be */
+    background-repeat: no-repeat;
+    background-size: fit;
+}

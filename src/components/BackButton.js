@@ -36,7 +36,10 @@ class BackButton extends React.Component{
 
     render() {
         return <div>
-                <button onClick={this.handleClick} style={{'color': this.state.currentColour}}>🡠 BACK</button> 
+                <button 
+                    onClick={this.handleClick} 
+                    style={{'color': this.state.currentColour}}>🡠 BACK
+                </button> 
             </div>;
     }
     
