@@ -29,7 +29,7 @@ class BackButton extends React.Component{
 			firebase.initializeApp(firebaseConfig)
 		}
         var database = firebase.database()
-        database.ref('state/stress').on('value', (snapshot) => {
+        database.ref('stress/stress').on('value', (snapshot) => {
             this.handleMoodChange(snapshot.val());
         })
     }
