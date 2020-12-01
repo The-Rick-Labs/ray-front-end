@@ -1,46 +1,57 @@
 import React from 'react'
-import './styles//BackButton.css';
+import 'firebase/database'
+import * as firebase from 'firebase/app'
+
+import './styles/BackButton.css'
 
 class BackButton extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            //colour of button text should change with Ray's mood
-            //currently changes whenever button is clicked (like Ray)
-            //change with firebase later
-            currentColour: '#1DA02B',
-            possibleColours: ['#1DA02B', '#AB9000', '#757575'],
-            cycleCounter: 0
+            currentColour: '',
         };
-        this.handleClick = this.handleClick.bind(this);
+        this.handleMoodChange = this.handleMoodChange.bind(this);
     }
 
-    handleClick(e) {
-        /*
-            code for going back to main page?
-         */
-        this.setState(state => ({
-            cycleCounter: state.cycleCounter + 1
-        }));
+    componentDidMount() {
+        var firebaseConfig = {
+			apiKey: 'AIzaSyAImG5Vk9cS8Yi_UUNX9gwO-4_b1z2KAR0',
+			authDomain: 'rayside-94e8d.firebaseapp.com',
+			databaseURL: 'https://rayside-94e8d.firebaseio.com',
+			projectId: 'rayside-94e8d',
+			storageBucket: 'rayside-94e8d.appspot.com',
+			messagingSenderId: '819405678971',
+			appId: '1:819405678971:web:74554bcb338cafdb07b5de',
+			measurementId: 'G-4JECV8ZB79',
+		}
 
-        if (this.state.cycleCounter === 3) {
-            this.setState(state => ({
-                cycleCounter: 0
-            }));
+		if (!firebase.apps.length) {
+			firebase.initializeApp(firebaseConfig)
+		}
+        var database = firebase.database()
+        database.ref('stress/stress').on('value', (snapshot) => {
+            this.handleMoodChange(snapshot.val());
+        })
+    }
+
+    handleMoodChange(stress) {
+        if (stress <= 50) {
+            this.setState({ currentColour: '#1DA02B' });
+        } else if (stress > 50 && stress <= 75) {
+            this.setState({ currentColour: '#AB9000' });
+        } else {
+            this.setState({ currentColour: '#757575' });
         }
-
-        this.setState(state => ({
-            currentColour: this.state.possibleColours[this.state.cycleCounter]
-        }));
     }
 
     render() {
-        return <div>
-                <button 
-                    onClick={this.handleClick} 
-                    style={{'color': this.state.currentColour}}>🡠 BACK
-                </button> 
-            </div>;
+        return <span id="backButton">
+            <button className = 'bigbutton'
+                style={{'color': this.state.currentColour}}
+            >
+                🡠 BACK
+            </button> 
+        </span>;
     }
     
 }
