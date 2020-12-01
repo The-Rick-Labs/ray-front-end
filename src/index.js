@@ -1,9 +1,5 @@
 import React from 'react'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import ReactDOM from 'react-dom'
 
 import Home from './Pages/Home'
@@ -14,7 +10,9 @@ import Settings from './Pages/Settings'
 class App extends React.Component {
 	render() {
 		return (
-			<div><Home/></div>
+			<div>
+				<Home />
+			</div>
 
 			// <>
 			// 	<BackButton></BackButton>

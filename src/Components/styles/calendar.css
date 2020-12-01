@@ -1,0 +1,31 @@
+.calendar {
+	display: flex;
+	flex-direction: column;
+	background-color: white;
+	border-radius: 0.5em;
+}
+.calendarButtons {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	height: 75px;
+}
+
+.scrollable {
+	margin-top: 20px;
+	overflow: scroll;
+	font-family: sans-serif;
+	width: 100%;
+}
+
+.calendarlistitem {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	height: 50px;
+	width: 100%;
+}
+
+.listitem2 {
+	width: 200px;
+}

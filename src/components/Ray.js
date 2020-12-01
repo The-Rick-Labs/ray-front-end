@@ -2,7 +2,7 @@ import React from 'react'
 import ray_happy from './ray_images/ray_happy.png'
 import ray_mad from './ray_images/ray_mad.png'
 import ray_sad from './ray_images/ray_sad.png'
-import './styles//Ray.css'
+import './styles/Ray.css'
 
 class Ray extends React.Component {
 	constructor(props) {
@@ -82,13 +82,13 @@ class Ray extends React.Component {
 
 	render() {
 		return (
-			<div>
-				{/* <button onClick={() => this.handleFaceClick(':]')}>:]</button>
-				<button onClick={() => this.handleFaceClick(':[')}>:[</button>
-				<button onClick={() => this.handleFaceClick('uwu')}>uwu</button>
-				<h3>button clicked: {this.state.faceClicked}</h3> */}
-				<img alt='ray' onClick={this.handleClick} src={this.state.currentImageSrc}></img>
-			</div>
+			<img
+				className='ray'
+				alt='ray'
+				width='150px'
+				onClick={this.handleClick}
+				src={this.state.currentImageSrc}
+			></img>
 		)
 	}
 }

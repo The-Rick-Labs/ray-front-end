@@ -1,0 +1,18 @@
+.settings {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	width: 200px;
+	justify-content: center;
+	/* padding-top: 10px; */
+}
+
+.settings div {
+	margin-top: 25px;
+}
+
+.buttondiv {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}

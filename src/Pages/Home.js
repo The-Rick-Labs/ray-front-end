@@ -1,45 +1,65 @@
 import React from 'react'
 import '../components/styles/Home.css'
 import Ray from '../components/Ray'
-import {
-	BrowserRouter as Router,
-	Switch,
-	Route,
-	Link
-  } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 
 import Assignment from './Assignment'
 import Food from './Food'
 import Settings from './Settings'
+import BackButton from '../components/BackButton'
+import Bar from '../components/Bar'
 
 class Home extends React.Component {
 	constructor(props) {
 		super(props)
-    }
+	}
 
 	render() {
 		return (
 			<div>
 				<Router>
-					<Ray/>
-					<div id="homeNavBar">
-						<div id="inHomeBar">
-							<Link to='/food'><div>🍔</div></Link>
-							<Link to='/assignments'><div>📓</div></Link>
-							<Link to='/settings'><div>⚙️</div></Link>
+					<div className='page'>
+						<div className='centerVertical'>
+							<div className='progbars'>
+								<Bar value='food' />
+								<Bar value='stress' />
+							</div>
+							<div>
+								<Link to='/'>
+									<button className='bigbutton'>Back</button>
+								</Link>
+							</div>
 						</div>
+						<div className='centerVertical'>
+							<Ray />
+						</div>
+						<Switch>
+							<Route path='/assignments'>
+								<Assignment />
+							</Route>
+							<Route path='/settings'>
+								<Settings />
+							</Route>
+							<Route path='/food'>
+								<Food />
+							</Route>
+						</Switch>
 					</div>
-					<Switch>
-						<Route path='/assignments'>
-							<Assignment />
-						</Route>
-						<Route path='/settings'>
-							<Settings />
-						</Route>
-						<Route path='/food'>
-							<Food />
-						</Route>
-					</Switch>
+
+					<div id='homeNavBar'>
+						<Link to='/'>
+							<span role='img'>🤖</span>
+						</Link>
+						<Link to='/food'>
+							<span role='img'>🍔</span>
+						</Link>
+						<Link to='/assignments'>
+							<span role='img'>📓</span>
+						</Link>
+						<Link to='/settings'>
+							<span role='img'>⚙️</span>
+						</Link>
+					</div>
 				</Router>
 			</div>
 		)
