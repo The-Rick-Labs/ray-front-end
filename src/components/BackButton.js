@@ -1,46 +1,45 @@
 import React from 'react'
-import './styles//BackButton.css';
+import 'firebase/database'
+import * as firebase from 'firebase/app'
 
 class BackButton extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            //colour of button text should change with Ray's mood
-            //currently changes whenever button is clicked (like Ray)
-            //change with firebase later
             currentColour: '#1DA02B',
-            possibleColours: ['#1DA02B', '#AB9000', '#757575'],
-            cycleCounter: 0
         };
-        this.handleClick = this.handleClick.bind(this);
+        this.handleMoodChange = this.handleMoodChange.bind(this);
     }
 
-    handleClick(e) {
-        /*
-            code for going back to main page?
-         */
-        this.setState(state => ({
-            cycleCounter: state.cycleCounter + 1
-        }));
+    componentDidMount() {
+        var database = firebase.database()
+        database.ref('state/stress').on('value', (snapshot) => {
+            this.handleMoodChange(snapshot.val());
+        })
+    }
 
-        if (this.state.cycleCounter === 3) {
-            this.setState(state => ({
-                cycleCounter: 0
-            }));
+    handleMoodChange(stress) {
+        if (stress <= 50) {
+            this.setState({
+                currentColor: '#1DA02B'
+            });
+        } else if (stress > 50 && stress <= 75) {
+            this.setState({
+                currentColor: '#AB9000'
+            });
+        } else {
+            this.setState({
+                currentColor: '#757575'
+            });
         }
-
-        this.setState(state => ({
-            currentColour: this.state.possibleColours[this.state.cycleCounter]
-        }));
     }
 
     render() {
         return <div>
-                <button 
-                    onClick={this.handleClick} 
-                    style={{'color': this.state.currentColour}}>🡠 BACK
-                </button> 
-            </div>;
+            <button className = 'bigbutton'
+                style={{'color': this.state.currentColour}}>🡠 BACK
+            </button> 
+        </div>;
     }
     
 }

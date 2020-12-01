@@ -1,4 +1,5 @@
 import React from 'react'
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 
 import BackButton from '../components/BackButton'
 import FoodItem from '../components/FoodItem'
@@ -64,9 +65,13 @@ class Food extends React.Component {
 
 		return (
 			<div id='food_page'>
-				<div id='foodHeader'>
-					<BackButton />
+				<div id="foodHeader">
+					<Link to='/'>
+						<BackButton />
+					</Link>
 				</div>
+				
+				
 				<div id='foodBody'>
 					<DropArea onDragOver={(e) => this.onDragOver(e)} onDrop={this.onDrop} />
 				</div>

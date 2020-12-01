@@ -26,7 +26,7 @@ class Home extends React.Component {
 							</div>
 							<div>
 								<Link to='/'>
-									<button className='bigbutton'>Back</button>
+									<BackButton />
 								</Link>
 							</div>
 						</div>
