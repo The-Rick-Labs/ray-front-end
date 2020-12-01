@@ -6,7 +6,7 @@ class BackButton extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            currentColour: '#1DA02B',
+            currentColour: '',
         };
         this.handleMoodChange = this.handleMoodChange.bind(this);
     }
@@ -20,24 +20,20 @@ class BackButton extends React.Component{
 
     handleMoodChange(stress) {
         if (stress <= 50) {
-            this.setState({
-                currentColor: '#1DA02B'
-            });
+            this.setState({ currentColour: '#1DA02B' });
         } else if (stress > 50 && stress <= 75) {
-            this.setState({
-                currentColor: '#AB9000'
-            });
+            this.setState({ currentColour: '#AB9000' });
         } else {
-            this.setState({
-                currentColor: '#757575'
-            });
+            this.setState({ currentColour: '#757575' });
         }
     }
 
     render() {
         return <div>
             <button className = 'bigbutton'
-                style={{'color': this.state.currentColour}}>🡠 BACK
+                style={{'color': this.state.currentColour}}
+            >
+                🡠 BACK
             </button> 
         </div>;
     }
