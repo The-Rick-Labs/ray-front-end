@@ -3,6 +3,8 @@ import React from 'react'
 import 'firebase/database'
 import * as firebase from 'firebase/app'
 
+import './styles/bar.css'
+
 class Bar extends React.Component {
 	state = {
 		value: 0,
@@ -63,12 +65,15 @@ class Bar extends React.Component {
 
 	render() {
 		return (
-			<>
-				<button onClick={this.handleReset}>reset db</button>
+			<div className='baritem'>
+				<span>{this.props.value}:</span>
+				{/* <button onClick={this.handleReset}>reset db</button>
 				<button onClick={this.handleAdd}>add</button>
-				<button onClick={this.handleDecrease}>decrease</button>
-				<h3>{this.state.value}</h3>
-			</>
+				<button onClick={this.handleDecrease}>decrease</button> */}
+				<div>
+					<h3>{this.state.value}</h3>
+				</div>
+			</div>
 		)
 	}
 }

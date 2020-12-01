@@ -47,41 +47,30 @@ class Food extends React.Component {
 	}
 
 	render() {
-        fooditems = [];
-        if (this.state.availableFood > 0) {
-            for (var i = 0; i < this.state.availableFood; i++) {
-                fooditems.push(
-                    <FoodItem 
-                        key={i} 
-                        handleDrag={ (e) => this.onDragStart(e)} 
-                        currentImageSrc={food_item1} 
-                    /> 
-                );
-            }
-        } else {
-            fooditems.push(
-                <FoodItem 
-                    key={0} 
-                    currentImageSrc={food_item3} 
-                /> 
-            )
-        }
-
+		fooditems = []
+		if (this.state.availableFood > 0) {
+			for (var i = 0; i < this.state.availableFood; i++) {
+				fooditems.push(
+					<FoodItem
+						key={i}
+						handleDrag={(e) => this.onDragStart(e)}
+						currentImageSrc={food_item1}
+					/>
+				)
+			}
+		} else {
+			fooditems.push(<FoodItem key={0} currentImageSrc={food_item3} />)
+		}
 
 		return (
-			<div id="food_page">
-                <div id="foodHeader">
-                    <BackButton />
-                </div>
-                <div id="foodBody">
-                    <DropArea 
-                        onDragOver={ (e) => this.onDragOver(e) } 
-                        onDrop={this.onDrop} 
-                    />
-                </div>
-                <div id='food_container'>
-				    {fooditems}
-                </div>
+			<div id='food_page'>
+				<div id='foodHeader'>
+					<BackButton />
+				</div>
+				<div id='foodBody'>
+					<DropArea onDragOver={(e) => this.onDragOver(e)} onDrop={this.onDrop} />
+				</div>
+				<div id='food_container'>{fooditems}</div>
 			</div>
 		)
 	}
