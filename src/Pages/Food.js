@@ -24,19 +24,12 @@ class Food extends React.Component {
 		}
 		this.onDragStart = this.onDragStart.bind(this)
 		this.onDragOver = this.onDragOver.bind(this)
-		this.onDrop = this.onDrop.bind(this)
-
-		//refills food over time
-		//guys i am actually so proud of this
-		this.timer = 0
-		this.startTimer = this.startTimer.bind(this)
-		this.countDown = this.countDown.bind(this)
+		this.onDrop = this.onDrop.bind(this)	
 	}
 
 	componentDidMount() {
 		this.dragImg = new Image(0, 0)
 		this.dragImg.src = food_item2
-
 		var firebaseConfig = {
 			apiKey: 'AIzaSyAImG5Vk9cS8Yi_UUNX9gwO-4_b1z2KAR0',
 			authDomain: 'rayside-94e8d.firebaseapp.com',
@@ -52,12 +45,6 @@ class Food extends React.Component {
 			firebase.initializeApp(firebaseConfig)
 		}
 		var database = firebase.database()
-		database.ref('food/food').on('value', (snapshot) => {
-			this.setState({ availableFood: snapshot.val() });
-			if (snapshot.val() < 10) {
-				this.startTimer();
-			}
-		})
 		database.ref('food/fullness').on('value', (snapshot) => {
 			this.setState({ fullness: snapshot.val() });
 		})
@@ -75,28 +62,6 @@ class Food extends React.Component {
 		var database = firebase.database()
 		database.ref('food/food').set(this.state.availableFood-1)
 		database.ref('food/fullness').set(this.state.fullness+10)
-	}
-
-	startTimer() {
-		if (this.timer == 0 && this.state.seconds > 0) {
-			this.timer = setInterval(this.countDown, 1000);
-		}
-	}
-
-	countDown() {
-		let current_seconds = this.state.seconds-1;
-		this.setState({
-			seconds: current_seconds
-		});
-		if (current_seconds == 0) {
-			clearInterval(this.timer);
-			this.timer = 0;
-			this.setState({
-				seconds: 5
-			})
-			var database = firebase.database()
-			database.ref('food/food').set(this.state.availableFood+1)
-		}
 	}
 
 	render() {
