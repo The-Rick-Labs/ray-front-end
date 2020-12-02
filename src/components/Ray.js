@@ -24,13 +24,16 @@ class Ray extends React.Component {
 		let uri = ''
 		if (face === ':]') {
 			uri = 'smiley'
+			console.log(':)')
 		} else if (face === ':[') {
 			uri = 'sad'
+		} else if(face == ':|'){
+			uri = 'meh'
 		} else {
 			uri = 'uwu'
 		}
 
-		fetch('http://192.168.2.11:8080/' + uri).then((res) => {
+		fetch('http://192.168.86.28:8080/' + uri).then((res) => {
 			this.setState({ faceClicked: face })
 		})
 	}
@@ -61,16 +64,19 @@ class Ray extends React.Component {
 				this.setState((state) => ({
 					currentImageSrc: ray_happy,
 				}))
+				this.handleFaceClick(':]')
 				break
 			case 'mad':
 				this.setState((state) => ({
 					currentImageSrc: ray_mad,
 				}))
+				this.handleFaceClick(':|')
 				break
 			case 'sad':
 				this.setState((state) => ({
 					currentImageSrc: ray_sad,
 				}))
+				this.handleFaceClick(':[')
 				break
 			default:
 				this.setState((state) => ({

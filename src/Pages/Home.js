@@ -12,9 +12,20 @@ import Bar from '../components/Bar'
 class Home extends React.Component {
 	constructor(props) {
 		super(props)
+		
+	}
+
+	componentDidMount() {
+		fetch('http://192.168.86.28:8080/uwu').then((res) => {})
+	}
+	componentWillUnmount() {
+		window.clearInterval()
 	}
 
 	render() {
+		window.setInterval(()=>{
+			fetch('http://192.168.86.28:8080/blink').then((res) => {})
+		},5000);
 		return (
 			<div>
 				<Router>
