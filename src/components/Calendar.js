@@ -3,14 +3,22 @@ import React from 'react'
 import ApiCalendar from 'react-google-calendar-api'
 import './styles/calendar.css'
 
+import Task from './Task'
+
 class Calendar extends React.Component {
 	state = {
 		events: [],
+		complete: []
 	}
 
 	constructor(props) {
 		super(props)
 		this.handleItemClick = this.handleItemClick.bind(this)
+
+		this.handleClick = this.handleClick.bind(this)
+		this.handleYes = this.handleYes.bind(this)
+		this.handleNo = this.handleNo.bind(this)
+
 	}
 
 	Load() {
@@ -20,6 +28,11 @@ class Calendar extends React.Component {
 			})
 			.then((items) => {
 				this.setState({ events: items })
+
+				var temp = []
+				for (var i = 0; i < this.state.events.length; ++i) {temp[i] = false}
+
+				this.setState({complete: temp})
 			})
 	}
 
@@ -32,7 +45,37 @@ class Calendar extends React.Component {
 		}
 	}
 
+	handleClick(i) {
+		console.log('task click ' + i)
+		if (window.confirm("Did you finish this task?")) {
+			this.handleYes(i)
+		} else {
+			this.handleNo()
+		}
+	}
+
+	handleYes(i) {
+		console.log("Complete")
+
+		var temp = []
+		for (var j = 0; j < this.state.events.length; ++j) {
+			if (j == i || this.state.complete[j]) {
+				temp[j] = true
+			} else {
+				temp[j] = false
+			}
+		}
+
+		this.setState({complete: temp})
+	}
+
+	handleNo() {
+		console.log("Not Complete")
+	}
+
 	render() {
+		console.log(this.state.events)
+
 		return (
 			<div className='calendar'>
 				<div className='calendarButtons'>
@@ -61,18 +104,15 @@ class Calendar extends React.Component {
 									var delta = Math.abs(end - now) / 1000
 									var hours = Math.floor(delta / 3600) % 24
 
-									return (
-										<div key={i} className='calendarlistitem'>
-											<span className='listitem2'>{item['summary']}</span>
-											<span className='listitem2'>{hours} hours</span>
-											<br />
-										</div>
-									)
+									const data = {id: i, name: item['summary'], dueDate: hours, complete: this.state.complete[i]}
+
+									return <Task key={i} data = {data} handleClick={this.handleClick} />
 								})}
 							</>
 						)}
 					</>
 				</div>
+
 			</div>
 		)
 	}

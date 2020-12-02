@@ -3,15 +3,15 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom' 
 import 'firebase/database'
 import * as firebase from 'firebase/app'
 
-import BackButton from '../components/BackButton'
-import FoodItem from '../components/FoodItem'
-import DropArea from '../components/DropArea'
+import BackButton from '../Components/BackButton'
+import FoodItem from '../Components/FoodItem'
+import DropArea from '../Components/DropArea'
 
-import food_item1 from '../components/ray_images/food_item1.png'
-import food_item2 from '../components/ray_images/food_item2.png'
-import food_item3 from '../components/ray_images/food_item3.png'
+import food_item1 from '../Components/ray_images/food_item1.png'
+import food_item2 from '../Components/ray_images/food_item2.png'
+import food_item3 from '../Components/ray_images/food_item3.png'
 
-import '../components/styles//Food.css'
+import '../Components/styles//Food.css'
 
 var fooditems = []
 class Food extends React.Component {

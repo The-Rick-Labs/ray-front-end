@@ -4,7 +4,7 @@ import ApiCalendar from 'react-google-calendar-api'
 import 'firebase/database'
 import * as firebase from 'firebase/app'
 
-import '../components/styles/settings.css'
+import '../Components/styles/settings.css'
 
 class Settings extends React.Component {
 	constructor(props) {

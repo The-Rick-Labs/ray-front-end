@@ -6,20 +6,19 @@ class Task extends React.Component {
 
         if (this.props.data.complete) {
             name = (
-                <h3>√  {this.props.data.name}</h3>
+                <span className='listitem2' >√  {this.props.data.name}</span>
             )
         } else {
             name = (
-                <h3 onClick={() => this.props.handleClick(this.props.data.id)}>{this.props.data.name}</h3>
+                <span className='listitem2' onClick={() => this.props.handleClick(this.props.data.id)}>{this.props.data.name}</span>
             )
         }
 
 
         return (
-            <div>
+            <div className='calendarlistitem' >
                 {name}
-                {this.props.data.dueDate} <br/>
-                {this.props.data.complete}
+                <span className='listitem2'>due in {this.props.data.dueDate} hours</span>
             </div>
         )
     }
