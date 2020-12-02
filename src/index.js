@@ -1,11 +1,9 @@
 import React from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import ReactDOM from 'react-dom'
 
 import Home from './Pages/Home'
-import Assignment from './Pages/Assignment'
-import Food from './Pages/Food'
-import Settings from './Pages/Settings'
+
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 class App extends React.Component {
 	render() {

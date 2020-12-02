@@ -1,8 +1,8 @@
 import React from 'react'
 import 'firebase/database'
 import * as firebase from 'firebase/app'
-
-import './styles/BackButton.css'
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom' 
+import './styles/Home.css'
 
 class BackButton extends React.Component{
     constructor(props) {
@@ -45,13 +45,19 @@ class BackButton extends React.Component{
     }
 
     render() {
-        return <span id="backButton">
-            <button className = 'bigbutton'
-                style={{'color': this.state.currentColour}}
-            >
-                🡠 BACK
-            </button> 
-        </span>;
+        return (
+            <div className = 'backButtonContainer'>
+                <Link to='/'>
+                    <button className = 'backButton'
+                        style={{'color': this.state.currentColour}}
+                    >
+                        🡠 BACK
+                    </button>
+                </Link>
+            </div>
+            
+        )
+            
     }
     
 }

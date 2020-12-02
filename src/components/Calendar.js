@@ -5,10 +5,14 @@ import './styles/calendar.css'
 
 import Task from './Task'
 
+import 'firebase/database'
+import * as firebase from 'firebase/app'
+
 class Calendar extends React.Component {
 	state = {
 		events: [],
-		complete: []
+		complete: [],
+		stress: 0,
 	}
 
 	constructor(props) {
@@ -19,6 +23,7 @@ class Calendar extends React.Component {
 		this.handleYes = this.handleYes.bind(this)
 		this.handleNo = this.handleNo.bind(this)
 
+		this.database = {}
 	}
 
 	Load() {
@@ -30,9 +35,11 @@ class Calendar extends React.Component {
 				this.setState({ events: items })
 
 				var temp = []
-				for (var i = 0; i < this.state.events.length; ++i) {temp[i] = false}
+				for (var i = 0; i < this.state.events.length; ++i) {
+					temp[i] = false
+				}
 
-				this.setState({complete: temp})
+				this.setState({ complete: temp })
 			})
 	}
 
@@ -47,7 +54,7 @@ class Calendar extends React.Component {
 
 	handleClick(i) {
 		console.log('task click ' + i)
-		if (window.confirm("Did you finish this task?")) {
+		if (window.confirm('Did you finish this task?')) {
 			this.handleYes(i)
 		} else {
 			this.handleNo()
@@ -55,22 +62,32 @@ class Calendar extends React.Component {
 	}
 
 	handleYes(i) {
-		console.log("Complete")
+		console.log('Complete')
+
+		var database = firebase.database()
+		database.ref('stress/stress').set(this.state.stress - 10)
 
 		var temp = []
 		for (var j = 0; j < this.state.events.length; ++j) {
-			if (j == i || this.state.complete[j]) {
+			if (j === i || this.state.complete[j]) {
 				temp[j] = true
 			} else {
 				temp[j] = false
 			}
 		}
 
-		this.setState({complete: temp})
+		this.setState({ complete: temp })
 	}
 
 	handleNo() {
-		console.log("Not Complete")
+		console.log('Not Complete')
+	}
+
+	componentDidMount() {
+		var database = firebase.database()
+		database.ref('stress/stress').on('value', (snapshot) => {
+			this.setState({ stress: snapshot.val() })
+		})
 	}
 
 	render() {
@@ -104,15 +121,21 @@ class Calendar extends React.Component {
 									var delta = Math.abs(end - now) / 1000
 									var hours = Math.floor(delta / 3600) % 24
 
-									const data = {id: i, name: item['summary'], dueDate: hours, complete: this.state.complete[i]}
+									const data = {
+										id: i,
+										name: item['summary'],
+										dueDate: hours,
+										complete: this.state.complete[i],
+									}
 
-									return <Task key={i} data = {data} handleClick={this.handleClick} />
+									return (
+										<Task key={i} data={data} handleClick={this.handleClick} />
+									)
 								})}
 							</>
 						)}
 					</>
 				</div>
-
 			</div>
 		)
 	}

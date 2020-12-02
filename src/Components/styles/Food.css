@@ -9,9 +9,21 @@
     margin-top: 50px;
 }
 
-#food_page {
+#foodPage {
     background-image: url('../ray_images/rayFoodBG.png');
     background-position: 0% 0%;
     background-repeat: no-repeat;
-    background-size: fit;
+    background-size: cover;
 }
+
+#foodHeader {
+    display: flex;
+    flex-direction: row;
+}
+
+#foodContainer {
+    height: 10rem;
+    position: absolute;
+    margin: 30% 100% 0% 0%;
+}
+

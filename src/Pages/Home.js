@@ -8,8 +8,9 @@ import * as firebase from 'firebase/app'
 import Assignment from './Assignment'
 import Food from './Food'
 import Settings from './Settings'
-import BackButton from '../Components/BackButton'
-import Bar from '../Components/Bar'
+import RayStatus from '../Components/RayStatus'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faRobot, faUtensils, faGraduationCap, faCogs } from '@fortawesome/free-solid-svg-icons'
 
 class Home extends React.Component {
 	constructor(props) {
@@ -43,7 +44,7 @@ class Home extends React.Component {
 		var database = firebase.database()
 		database.ref('food/food').on('value', (snapshot) => {
 			this.setState({ availableFood: snapshot.val() });
-			if (snapshot.val() < 10) {
+			if (snapshot.val() < 100) {
 				this.startTimer();
 			}
 		})
@@ -54,7 +55,7 @@ class Home extends React.Component {
 	}
 
 	startTimer() {
-		if (this.timer == 0 && this.state.seconds > 0) {
+		if (this.timer === 0 && this.state.seconds > 0) {
 			this.timer = setInterval(this.countDown, 1000);
 		}
 	}
@@ -64,11 +65,11 @@ class Home extends React.Component {
 		this.setState({
 			seconds: current_seconds
 		});
-		if (current_seconds == 0) {
+		if (current_seconds === 0) {
 			clearInterval(this.timer);
 			this.timer = 0;
 			this.setState({
-				seconds: 5
+				seconds: 3600
 			})
 			var database = firebase.database()
 			database.ref('food/food').set(this.state.availableFood+1)
@@ -76,53 +77,55 @@ class Home extends React.Component {
 	}
 
 	render() {
-		window.setInterval(()=>{
-			fetch('http://192.168.86.28:8080/blink').then((res) => {})
-		},5000);
+		// window.setInterval(()=>{
+		// 	fetch('http://192.168.86.28:8080/blink').then((res) => {})
+		// },5000);
 		return (
 			<div>
 				<Router>
+					<Switch>
+						<Route path='/assignments'>
+							<Assignment />
+						</Route>
+						<Route path='/settings'>
+							<Settings />
+						</Route>
+						<Route path='/food'>
+							<Food />
+						</Route>
+					</Switch>
+						
 					<div className='page'>
-						<div className='centerVertical'>
-							<div className='progbars'>
-								<Bar value='food' />
-								<Bar value='stress' />
-							</div>
-							<div>
-								<Link to='/'>
-									<BackButton />
-								</Link>
-							</div>
-						</div>
-						<div className='centerVertical'>
-							<Ray />
-						</div>
-						<Switch>
-							<Route path='/assignments'>
-								<Assignment />
-							</Route>
-							<Route path='/settings'>
-								<Settings />
-							</Route>
-							<Route path='/food'>
-								<Food />
-							</Route>
-						</Switch>
+						<RayStatus></RayStatus>
+						{/* <Link to='/'>
+							<BackButton />
+						</Link> */}
+						<Ray />
 					</div>
 
 					<div id='homeNavBar'>
-						<Link to='/'>
-							<span role='img'>🤖</span>
-						</Link>
-						<Link to='/food'>
-							<span role='img'>🍔</span>
-						</Link>
-						<Link to='/assignments'>
-							<span role='img'>📓</span>
-						</Link>
-						<Link to='/settings'>
-							<span role='img'>⚙️</span>
-						</Link>
+						<div id="inHomeBar">
+							<Link to='/'>
+								<div className="navIcon">
+									<FontAwesomeIcon icon={faRobot} />
+								</div>
+							</Link>
+							<Link to='/food'>
+								<div className="navIcon">
+									<FontAwesomeIcon icon={faUtensils} />
+								</div>
+							</Link>
+							<Link to='/assignments'>
+								<div className="navIcon">
+									<FontAwesomeIcon icon={faGraduationCap} />
+								</div>
+							</Link>
+							<Link to='/settings'>
+								<div className="navIcon">
+									<FontAwesomeIcon icon={faCogs} />
+								</div>
+							</Link>
+						</div>
 					</div>
 				</Router>
 			</div>
