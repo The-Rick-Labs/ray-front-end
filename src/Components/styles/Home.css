@@ -12,6 +12,10 @@ body {
 	overflow: hidden;
 }
 
+.backButtonContainer {
+	height: auto;
+}
+
 .backButton {
 	margin-top: 10px;
 	border-radius: 2em;

@@ -1,15 +1,16 @@
 import React from 'react'
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom' //for some reason i have to import all of them for it to work :p
+
 import 'firebase/database'
 import * as firebase from 'firebase/app'
 
 import BackButton from '../Components/BackButton'
 import FoodItem from '../Components/FoodItem'
 import DropArea from '../Components/DropArea'
+import RayStatus from '../Components/RayStatus'
 
-import food_item1 from '../Components/ray_images/food_item1.png'
-import food_item2 from '../Components/ray_images/food_item2.png'
-import food_item3 from '../Components/ray_images/food_item3.png'
+//import food_item1 from '../Components/ray_images/food_item1.png'
+import food_item from '../Components/ray_images/food_item.png'
+import empty_food_item from '../Components/ray_images/empty_food_item.png'
 
 import '../Components/styles/Food.css'
 
@@ -19,17 +20,22 @@ class Food extends React.Component {
 		super(props)
 		this.state = {
 			availableFood: 0,
-			fullness: 100,
-			seconds: 3600
+			dragging: false,
+			currentX: 0,
+			currentY: window.innerHeight*0.6
 		}
 		this.onDragStart = this.onDragStart.bind(this)
-		this.onDragOver = this.onDragOver.bind(this)
+		this.onTouchStart = this.onTouchStart.bind(this)
+		this.onDrag = this.onDrag.bind(this)
+		this.onTouchMove = this.onTouchMove.bind(this)
+		this.onDragOver = this.onDragOver.bind(this);
 		this.onDrop = this.onDrop.bind(this)	
+		this.onTouchEnd = this.onTouchEnd.bind(this)
 	}
 
 	componentDidMount() {
 		this.dragImg = new Image(0, 0)
-		this.dragImg.src = food_item2
+		this.dragImg.src = food_item;
 		var firebaseConfig = {
 			apiKey: 'AIzaSyAImG5Vk9cS8Yi_UUNX9gwO-4_b1z2KAR0',
 			authDomain: 'rayside-94e8d.firebaseapp.com',
@@ -45,23 +51,56 @@ class Food extends React.Component {
 			firebase.initializeApp(firebaseConfig)
 		}
 		var database = firebase.database()
-		database.ref('food/fullness').on('value', (snapshot) => {
-			this.setState({ fullness: snapshot.val() });
+		database.ref('food/food').on('value', (snapshot) => {
+			this.setState({ availableFood: snapshot.val() });
 		})
 	}
 
 	onDragStart(e) {
-		e.dataTransfer.setDragImage(this.dragImg, 50, 50)
+		console.log("yes");
+		if (e.type === 'dragstart') {
+			e.dataTransfer.setDragImage(this.dragImg, 50, 50)
+		}
+		this.setState({ dragging: true })
+	}
+
+	onTouchStart(e) {
+		this.onDragStart(e)
+	}
+
+	onDrag(e) {
+		if (e.clientX <= 0 || e.clientY <= 0) return false;
+		if (!e.type.includes('drag')) {
+			let touch = e.targetTouches[0];
+			this.setState({
+				currentX: touch.clientX,
+				currentY: touch.clientY
+			});
+		}
+	}
+
+	onTouchMove(e) {
+		this.onDrag(e);
 	}
 
 	onDragOver(e) {
-		e.preventDefault()
+		e.preventDefault();
 	}
 
 	onDrop() {
 		var database = firebase.database()
-		database.ref('food/food').set(this.state.availableFood-1)
-		database.ref('food/fullness').set(this.state.fullness+10)
+		if (this.state.availableFood > 0) {
+			database.ref('food/food').set(this.state.availableFood-1)
+		}
+		this.setState({ dragging: false });
+		this.setState({
+			currentX: 10,
+			currentY: window.innerHeight*0.6
+		})
+	}
+
+	onTouchEnd(e) {
+		this.onDrop()
 	}
 
 	render() {
@@ -71,28 +110,34 @@ class Food extends React.Component {
 				fooditems.push(
 					<FoodItem
 						key={i}
-						handleDrag={(e) => this.onDragStart(e)}
-						currentImageSrc={food_item1}
+						handleDragStart={(e) => this.onDragStart(e)}
+						handleTouchStart={(e) => this.onTouchStart(e)}
+						handleDrag={(e) => this.onDragOver(e)}
+						handleTouchMove={(e) => this.onTouchMove(e)}
+						handleDragEnd={(e) => this.onDrop(e)}
+						handleTouchEnd={(e) => this.onTouchEnd(e)}
+						currentImageSrc={food_item}
+						currentX={this.state.currentX}
+						currentY={this.state.currentY}
 					/>
 				)
 			}
 		} else {
-			fooditems.push(<FoodItem key={0} currentImageSrc={food_item3} />)
+			fooditems.push(
+				<FoodItem 
+					key={0} 
+					currentImageSrc={empty_food_item} 
+					currentX={10}
+					currentY={window.innerHeight*0.6}
+				/>)
 		}
 
 		return (
-			<div id='food_page'>
-				<div id="foodHeader">
-					<Link to='/'>
-						<BackButton />
-					</Link>
-				</div>
-				
-
-				<div id='foodBody'>
-					<DropArea onDragOver={(e) => this.onDragOver(e)} onDrop={this.onDrop} />
-				</div>
-				<div id='food_container'>{fooditems}</div>
+			<div id='foodPage' className='page'>
+				<RayStatus />
+				<BackButton />					
+				<DropArea onMouseDragOver={(e) => this.onDragOver(e)} />
+				<div id='foodContainer'>{fooditems}</div>
 			</div>
 		)
 	}

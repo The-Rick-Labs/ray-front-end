@@ -6,15 +6,12 @@ class DropArea extends React.Component {
         super(props);
     }
 
-    //sorry this is a bit sus
     render() {
         return (
-            <div id="drop_area" 
-                    onDragOver={this.props.onDragOver} 
-                    onDrop={this.props.onDrop} 
-            >
+            <div onDragOver={this.props.onMouseDragOver}>
                 <Ray />
-            </div>)
+            </div>
+        )
     }
 }
 export default DropArea

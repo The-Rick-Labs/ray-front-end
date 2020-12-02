@@ -44,7 +44,7 @@ class Home extends React.Component {
 		var database = firebase.database()
 		database.ref('food/food').on('value', (snapshot) => {
 			this.setState({ availableFood: snapshot.val() });
-			if (snapshot.val() < 10) {
+			if (snapshot.val() < 100) {
 				this.startTimer();
 			}
 		})
@@ -69,7 +69,7 @@ class Home extends React.Component {
 			clearInterval(this.timer);
 			this.timer = 0;
 			this.setState({
-				seconds: 5
+				seconds: 3600
 			})
 			var database = firebase.database()
 			database.ref('food/food').set(this.state.availableFood+1)
@@ -106,22 +106,22 @@ class Home extends React.Component {
 					<div id='homeNavBar'>
 						<div id="inHomeBar">
 							<Link to='/'>
-								<div class="navIcon">
+								<div className="navIcon">
 									<FontAwesomeIcon icon={faRobot} />
 								</div>
 							</Link>
 							<Link to='/food'>
-								<div class="navIcon">
+								<div className="navIcon">
 									<FontAwesomeIcon icon={faUtensils} />
 								</div>
 							</Link>
 							<Link to='/assignments'>
-								<div class="navIcon">
+								<div className="navIcon">
 									<FontAwesomeIcon icon={faGraduationCap} />
 								</div>
 							</Link>
 							<Link to='/settings'>
-								<div class="navIcon">
+								<div className="navIcon">
 									<FontAwesomeIcon icon={faCogs} />
 								</div>
 							</Link>
