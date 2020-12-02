@@ -5,10 +5,14 @@ import './styles/calendar.css'
 
 import Task from './Task'
 
+import 'firebase/database'
+import * as firebase from 'firebase/app'
+
 class Calendar extends React.Component {
 	state = {
 		events: [],
 		complete: [],
+		stress: 0,
 	}
 
 	constructor(props) {
@@ -18,6 +22,8 @@ class Calendar extends React.Component {
 		this.handleClick = this.handleClick.bind(this)
 		this.handleYes = this.handleYes.bind(this)
 		this.handleNo = this.handleNo.bind(this)
+
+		this.database = {}
 	}
 
 	Load() {
@@ -58,6 +64,9 @@ class Calendar extends React.Component {
 	handleYes(i) {
 		console.log('Complete')
 
+		var database = firebase.database()
+		database.ref('stress/stress').set(this.state.stress - 10)
+
 		var temp = []
 		for (var j = 0; j < this.state.events.length; ++j) {
 			if (j === i || this.state.complete[j]) {
@@ -72,6 +81,13 @@ class Calendar extends React.Component {
 
 	handleNo() {
 		console.log('Not Complete')
+	}
+
+	componentDidMount() {
+		var database = firebase.database()
+		database.ref('stress/stress').on('value', (snapshot) => {
+			this.setState({ stress: snapshot.val() })
+		})
 	}
 
 	render() {
