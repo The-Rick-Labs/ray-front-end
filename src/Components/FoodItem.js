@@ -20,7 +20,7 @@ class FoodItem extends React.Component {
                     cursor: 'pointer',
                     position: 'absolute',
                     left: this.props.currentX,
-                    top: this.props.currentY-250, //sorry for sus
+                    top: this.props.currentY, //sorry for sus
                     zindex: 999
                 } }
             >
