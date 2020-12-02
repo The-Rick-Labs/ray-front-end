@@ -19,6 +19,7 @@ class Food extends React.Component {
 		super(props)
 		this.state = {
 			availableFood: 0,
+			fullness: 0,
 			dragging: false,
 			currentX: 10,
 			currentY: 0
@@ -50,10 +51,12 @@ class Food extends React.Component {
 			firebase.initializeApp(firebaseConfig)
 		}
 		var database = firebase.database()
-		database.ref('food/food').on('value', (snapshot) => {
+		database.ref('food/amount').on('value', (snapshot) => {
 			this.setState({ availableFood: snapshot.val() });
 		})
-		console.log(this.state.currentY);
+		database.ref('food/food').on('value', (snapshot) => {
+			this.setState({ fullness: snapshot.val() });
+		})
 	}
 
 	onDragStart(e) {
@@ -89,10 +92,11 @@ class Food extends React.Component {
 	onDrop() {
 		var database = firebase.database()
 		if (this.state.availableFood > 0) {
-			database.ref('food/food').set(this.state.availableFood-1)
+			database.ref('food/amount').set(this.state.availableFood-1)
 		}
-		this.setState({ dragging: false });
+		database.ref('food/food').set(this.state.fullness+10)
 		this.setState({
+			dragging: false,
 			currentX: 10,
 			currentY: 0
 		})
