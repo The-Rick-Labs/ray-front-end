@@ -12,7 +12,7 @@
 }
 
 .scrollable {
-	margin-top: 20px;
+	margin-top: 50px;
 	overflow: scroll;
 	font-family: sans-serif;
 	width: 100%;
@@ -27,5 +27,7 @@
 }
 
 .listitem2 {
-	width: 200px;
+	width: 300px;
+	margin-left: 50px;
+	font-size: 2em;
 }

@@ -29,14 +29,14 @@ class Settings extends React.Component {
 	render() {
 		return (
 			<div className='settings'>
-				<div id="centerSettings">
+				<div id='centerSettings'>
 					<div>
 						<button className='bigbutton' onClick={this.logout}>
 							Log Out
 						</button>
 					</div>
 					<div>
-						<button className='bigbutton' onClick={this.reset}>
+						<button id='temp' className='bigbutton' onClick={this.reset}>
 							Reset Game
 						</button>
 					</div>
