@@ -59,7 +59,7 @@ class Calendar extends React.Component {
 
 		var temp = []
 		for (var j = 0; j < this.state.events.length; ++j) {
-			if (j == i || this.state.complete[j]) {
+			if (j === i || this.state.complete[j]) {
 				temp[j] = true
 			} else {
 				temp[j] = false

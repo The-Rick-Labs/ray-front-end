@@ -2,6 +2,7 @@ import React from 'react'
 
 import 'firebase/database'
 import * as firebase from 'firebase/app'
+import ProgressBar from 'react-bootstrap/ProgressBar'
 
 import './styles/bar.css'
 
@@ -65,15 +66,13 @@ class Bar extends React.Component {
 
 	render() {
 		return (
-			<div className='baritem'>
-				<span>{this.props.value}:</span>
-				{/* <button onClick={this.handleReset}>reset db</button>
-				<button onClick={this.handleAdd}>add</button>
-				<button onClick={this.handleDecrease}>decrease</button> */}
-				<div>
-					<h3>{this.state.value}</h3>
-				</div>
-			</div>
+			<ProgressBar now={this.state.value} variant="success"/>
+			/* <button onClick={this.handleReset}>reset db</button>
+			<button onClick={this.handleAdd}>add</button>
+			<button onClick={this.handleDecrease}>decrease</button> */
+			/* <div>
+				<h3>{this.state.value}</h3>
+			</div> */
 		)
 	}
 }

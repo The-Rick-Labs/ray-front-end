@@ -1,5 +1,7 @@
 import React from 'react'
 import ApiCalendar from 'react-google-calendar-api'
+import Ray from '../Components/Ray'
+import RayStatus from '../Components/RayStatus'
 
 import 'firebase/database'
 import * as firebase from 'firebase/app'
@@ -27,15 +29,17 @@ class Settings extends React.Component {
 	render() {
 		return (
 			<div className='settings'>
-				<div className='buttondiv'>
-					<button className='bigbutton' onClick={this.logout}>
-						Log Out
-					</button>
-				</div>
-				<div className='buttondiv'>
-					<button className='bigbutton' onClick={this.reset}>
-						Reset Game
-					</button>
+				<div id="centerSettings">
+					<div>
+						<button className='bigbutton' onClick={this.logout}>
+							Log Out
+						</button>
+					</div>
+					<div>
+						<button className='bigbutton' onClick={this.reset}>
+							Reset Game
+						</button>
+					</div>
 				</div>
 			</div>
 		)

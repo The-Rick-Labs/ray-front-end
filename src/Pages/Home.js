@@ -8,8 +8,9 @@ import * as firebase from 'firebase/app'
 import Assignment from './Assignment'
 import Food from './Food'
 import Settings from './Settings'
-import BackButton from '../Components/BackButton'
-import Bar from '../Components/Bar'
+import RayStatus from '../Components/RayStatus'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faRobot, faUtensils, faGraduationCap, faCogs } from '@fortawesome/free-solid-svg-icons'
 
 class Home extends React.Component {
 	constructor(props) {
@@ -54,7 +55,7 @@ class Home extends React.Component {
 	}
 
 	startTimer() {
-		if (this.timer == 0 && this.state.seconds > 0) {
+		if (this.timer === 0 && this.state.seconds > 0) {
 			this.timer = setInterval(this.countDown, 1000);
 		}
 	}
@@ -64,7 +65,7 @@ class Home extends React.Component {
 		this.setState({
 			seconds: current_seconds
 		});
-		if (current_seconds == 0) {
+		if (current_seconds === 0) {
 			clearInterval(this.timer);
 			this.timer = 0;
 			this.setState({
@@ -76,53 +77,55 @@ class Home extends React.Component {
 	}
 
 	render() {
-		window.setInterval(()=>{
-			fetch('http://192.168.86.28:8080/blink').then((res) => {})
-		},5000);
+		// window.setInterval(()=>{
+		// 	fetch('http://192.168.86.28:8080/blink').then((res) => {})
+		// },5000);
 		return (
 			<div>
 				<Router>
+					<Switch>
+						<Route path='/assignments'>
+							<Assignment />
+						</Route>
+						<Route path='/settings'>
+							<Settings />
+						</Route>
+						<Route path='/food'>
+							<Food />
+						</Route>
+					</Switch>
+						
 					<div className='page'>
-						<div className='centerVertical'>
-							<div className='progbars'>
-								<Bar value='food' />
-								<Bar value='stress' />
-							</div>
-							<div>
-								<Link to='/'>
-									<BackButton />
-								</Link>
-							</div>
-						</div>
-						<div className='centerVertical'>
-							<Ray />
-						</div>
-						<Switch>
-							<Route path='/assignments'>
-								<Assignment />
-							</Route>
-							<Route path='/settings'>
-								<Settings />
-							</Route>
-							<Route path='/food'>
-								<Food />
-							</Route>
-						</Switch>
+						<RayStatus></RayStatus>
+						{/* <Link to='/'>
+							<BackButton />
+						</Link> */}
+						<Ray />
 					</div>
 
 					<div id='homeNavBar'>
-						<Link to='/'>
-							<span role='img'>🤖</span>
-						</Link>
-						<Link to='/food'>
-							<span role='img'>🍔</span>
-						</Link>
-						<Link to='/assignments'>
-							<span role='img'>📓</span>
-						</Link>
-						<Link to='/settings'>
-							<span role='img'>⚙️</span>
-						</Link>
+						<div id="inHomeBar">
+							<Link to='/'>
+								<div class="navIcon">
+									<FontAwesomeIcon icon={faRobot} />
+								</div>
+							</Link>
+							<Link to='/food'>
+								<div class="navIcon">
+									<FontAwesomeIcon icon={faUtensils} />
+								</div>
+							</Link>
+							<Link to='/assignments'>
+								<div class="navIcon">
+									<FontAwesomeIcon icon={faGraduationCap} />
+								</div>
+							</Link>
+							<Link to='/settings'>
+								<div class="navIcon">
+									<FontAwesomeIcon icon={faCogs} />
+								</div>
+							</Link>
+						</div>
 					</div>
 				</Router>
 			</div>

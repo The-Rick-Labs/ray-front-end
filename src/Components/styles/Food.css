@@ -13,5 +13,5 @@
     background-image: url('../ray_images/rayFoodBG.png');
     background-position: 0% 0%;
     background-repeat: no-repeat;
-    background-size: fit;
+    background-size: cover;
 }

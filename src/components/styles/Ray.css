@@ -1,4 +1,5 @@
-/* img {
+.ray {
+	width: auto;
 	cursor: pointer;
 	position: absolute;
 	height: 60%;
@@ -7,10 +8,5 @@
 	right: 0;
 	margin-left: auto;
 	margin-right: auto;
-	margin-top: 80px;
-} */
-
-.ray {
-	height: auto;
-	margin-bottom: 75px;
+	margin-top: 50px;
 }

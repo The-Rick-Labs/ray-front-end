@@ -46,7 +46,7 @@ class BackButton extends React.Component{
 
     render() {
         return <span id="backButton">
-            <button className = 'bigbutton'
+            <button className = 'backButton'
                 style={{'color': this.state.currentColour}}
             >
                 🡠 BACK

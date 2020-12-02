@@ -3,10 +3,3 @@
 	flex-direction: row;
 	justify-content: space-around;
 }
-
-.centerVertical {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	height: 100%;
-}

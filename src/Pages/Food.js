@@ -11,7 +11,7 @@ import food_item1 from '../Components/ray_images/food_item1.png'
 import food_item2 from '../Components/ray_images/food_item2.png'
 import food_item3 from '../Components/ray_images/food_item3.png'
 
-import '../Components/styles//Food.css'
+import '../Components/styles/Food.css'
 
 var fooditems = []
 class Food extends React.Component {
@@ -88,7 +88,7 @@ class Food extends React.Component {
 					</Link>
 				</div>
 				
-				
+
 				<div id='foodBody'>
 					<DropArea onDragOver={(e) => this.onDragOver(e)} onDrop={this.onDrop} />
 				</div>

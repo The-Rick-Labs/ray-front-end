@@ -27,7 +27,7 @@ class Ray extends React.Component {
 			console.log(':)')
 		} else if (face === ':[') {
 			uri = 'sad'
-		} else if(face == ':|'){
+		} else if(face === ':|'){
 			uri = 'meh'
 		} else {
 			uri = 'uwu'
