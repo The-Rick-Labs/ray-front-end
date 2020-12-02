@@ -1,5 +1,5 @@
 import React from 'react'
-import Ray from '../components/Ray'
+import Ray from '../Components/Ray'
 
 class DropArea extends React.Component {
     constructor(props) {

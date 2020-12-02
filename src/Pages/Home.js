@@ -1,13 +1,13 @@
 import React from 'react'
-import '../components/styles/Home.css'
-import Ray from '../components/Ray'
+import '../Components/styles/Home.css'
+import Ray from '../Components/Ray'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 
 import Assignment from './Assignment'
 import Food from './Food'
 import Settings from './Settings'
-import BackButton from '../components/BackButton'
-import Bar from '../components/Bar'
+import BackButton from '../Components/BackButton'
+import Bar from '../Components/Bar'
 
 class Home extends React.Component {
 	constructor(props) {
