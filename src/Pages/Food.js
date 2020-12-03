@@ -8,7 +8,6 @@ import FoodItem from '../Components/FoodItem'
 import DropArea from '../Components/DropArea'
 import RayStatus from '../Components/RayStatus'
 
-//import food_item1 from '../Components/ray_images/food_item1.png'
 import food_item from '../Components/ray_images/food_item.png'
 import empty_food_item from '../Components/ray_images/empty_food_item.png'
 
@@ -20,9 +19,10 @@ class Food extends React.Component {
 		super(props)
 		this.state = {
 			availableFood: 0,
+			fullness: 0,
 			dragging: false,
-			currentX: 0,
-			currentY: window.innerHeight*0.6
+			currentX: 10,
+			currentY: 0
 		}
 		this.onDragStart = this.onDragStart.bind(this)
 		this.onTouchStart = this.onTouchStart.bind(this)
@@ -51,13 +51,15 @@ class Food extends React.Component {
 			firebase.initializeApp(firebaseConfig)
 		}
 		var database = firebase.database()
-		database.ref('food/food').on('value', (snapshot) => {
+		database.ref('food/amount').on('value', (snapshot) => {
 			this.setState({ availableFood: snapshot.val() });
+		})
+		database.ref('food/food').on('value', (snapshot) => {
+			this.setState({ fullness: snapshot.val() });
 		})
 	}
 
 	onDragStart(e) {
-		console.log("yes");
 		if (e.type === 'dragstart') {
 			e.dataTransfer.setDragImage(this.dragImg, 50, 50)
 		}
@@ -74,7 +76,7 @@ class Food extends React.Component {
 			let touch = e.targetTouches[0];
 			this.setState({
 				currentX: touch.clientX,
-				currentY: touch.clientY
+				currentY: touch.clientY-250
 			});
 		}
 	}
@@ -90,12 +92,13 @@ class Food extends React.Component {
 	onDrop() {
 		var database = firebase.database()
 		if (this.state.availableFood > 0) {
-			database.ref('food/food').set(this.state.availableFood-1)
+			database.ref('food/amount').set(this.state.availableFood-1)
 		}
-		this.setState({ dragging: false });
+		database.ref('food/food').set(this.state.fullness+10)
 		this.setState({
+			dragging: false,
 			currentX: 10,
-			currentY: window.innerHeight*0.6
+			currentY: 0
 		})
 	}
 
@@ -128,7 +131,7 @@ class Food extends React.Component {
 					key={0} 
 					currentImageSrc={empty_food_item} 
 					currentX={10}
-					currentY={window.innerHeight*0.6}
+					currentY={0}
 				/>)
 		}
 

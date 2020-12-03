@@ -42,7 +42,7 @@ class Home extends React.Component {
 			firebase.initializeApp(firebaseConfig)
 		}
 		var database = firebase.database()
-		database.ref('food/food').on('value', (snapshot) => {
+		database.ref('food/amount').on('value', (snapshot) => {
 			this.setState({ availableFood: snapshot.val() });
 			if (snapshot.val() < 100) {
 				this.startTimer();
@@ -72,7 +72,7 @@ class Home extends React.Component {
 				seconds: 3600
 			})
 			var database = firebase.database()
-			database.ref('food/food').set(this.state.availableFood+1)
+			database.ref('food/amount').set(this.state.availableFood+1)
 		}
 	}
 
