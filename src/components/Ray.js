@@ -41,7 +41,7 @@ class Ray extends React.Component {
 			uri = 'uwu'
 		}
 
-		fetch('http://192.168.86.28:8080/' + uri).then((res) => {
+		fetch('http://192.168.2.36:8080/' + uri).then((res) => {
 			this.setState({ faceClicked: face })
 		})
 	}

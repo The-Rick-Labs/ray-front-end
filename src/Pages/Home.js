@@ -20,6 +20,7 @@ class Home extends React.Component {
 			seconds: 3600,
 			availableStress: 0,
 			seconds2: 3600,
+			seconds3: 3600
 		}
 		//refills food over time
 		this.timer = 0
@@ -29,10 +30,11 @@ class Home extends React.Component {
 		this.timer2 = 0
 		this.startTimer2 = this.startTimer2.bind(this)
 		this.countDown2 = this.countDown2.bind(this)
+
 	}
 
 	componentDidMount() {
-		fetch('http://192.168.86.28:8080/uwu').then((res) => {})
+		fetch('http://192.168.2.36:8080/uwu').then((res) => {})
 		var firebaseConfig = {
 			apiKey: 'AIzaSyAImG5Vk9cS8Yi_UUNX9gwO-4_b1z2KAR0',
 			authDomain: 'rayside-94e8d.firebaseapp.com',
@@ -60,6 +62,12 @@ class Home extends React.Component {
 				this.startTimer2()
 			}
 		})
+
+		window.setInterval(function(){
+			fetch('http://192.168.2.36:8080/blink').then((res) => {})
+			console.log('blink')
+		},10000);
+
 	}
 
 	componentWillUnmount() {
@@ -111,9 +119,6 @@ class Home extends React.Component {
 	}
 
 	render() {
-		// window.setInterval(()=>{
-		// 	fetch('http://192.168.86.28:8080/blink').then((res) => {})
-		// },5000);
 		return (
 			<div>
 				<Router>
