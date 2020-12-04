@@ -76,8 +76,8 @@ class Food extends React.Component {
 			let touch = e.targetTouches[0];
 			//hardcoded for ipad currently :)
 			this.setState({
-				currentX: touch.clientX-650,
-				currentY: touch.clientY-400
+				currentX: touch.clientX-700,
+				currentY: touch.clientY-450
 			});
 		}
 	}
