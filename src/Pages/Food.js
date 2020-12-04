@@ -21,8 +21,8 @@ class Food extends React.Component {
 			availableFood: 0,
 			fullness: 0,
 			dragging: false,
-			currentX: 10,
-			currentY: 0
+			currentX: -450,
+			currentY: 50
 		}
 		this.onDragStart = this.onDragStart.bind(this)
 		this.onTouchStart = this.onTouchStart.bind(this)
@@ -74,9 +74,10 @@ class Food extends React.Component {
 		if (e.clientX <= 0 || e.clientY <= 0) return false;
 		if (!e.type.includes('drag')) {
 			let touch = e.targetTouches[0];
+			//hardcoded for ipad currently :)
 			this.setState({
-				currentX: touch.clientX,
-				currentY: touch.clientY-250
+				currentX: touch.clientX-500,
+				currentY: touch.clientY-350
 			});
 		}
 	}
@@ -97,8 +98,8 @@ class Food extends React.Component {
 		database.ref('food/food').set(this.state.fullness+10)
 		this.setState({
 			dragging: false,
-			currentX: 10,
-			currentY: 0
+			currentX: -450,
+			currentY: 50
 		})
 	}
 
@@ -130,8 +131,8 @@ class Food extends React.Component {
 				<FoodItem 
 					key={0} 
 					currentImageSrc={empty_food_item} 
-					currentX={10}
-					currentY={0}
+					currentX={-450}
+					currentY={50}
 				/>)
 		}
 
