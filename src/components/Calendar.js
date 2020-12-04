@@ -10,7 +10,10 @@ import * as firebase from 'firebase/app'
 
 class Calendar extends React.Component {
 	state = {
-		events: [],
+		events: [
+			{ summary: 'temp', end: { datetime: 10 } },
+			{ summary: 'temp', end: { datetime: 10 } },
+		],
 		complete: [],
 		stress: 0,
 	}
