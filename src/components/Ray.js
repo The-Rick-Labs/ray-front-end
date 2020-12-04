@@ -26,6 +26,7 @@ class Ray extends React.Component {
 		this.handleFaceClick = this.handleFaceClick.bind(this)
 		
 		this.readFB = this.readFB.bind(this)
+		this.readFB()
 	}
 
 	handleFaceClick(face) {
@@ -48,6 +49,7 @@ class Ray extends React.Component {
 
 	handleClick(e) {
 		e.preventDefault()
+		this.readFB()
 		if(this.state.currentMood.includes("happy")) {
 			this.setState((state) => ({
 				isQuoting: !state.isQuoting,
