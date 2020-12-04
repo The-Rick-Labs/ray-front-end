@@ -9,23 +9,23 @@
 
 .barIcon {
     position: absolute;
-    margin-left: 5% !important;
+    margin-left: 3% !important;
     top: 0 !important;
     left: 0 !important;
     bottom: 0 !important;
     right: 0 !important;
-    font-size: 5.8vh;
+    font-size: 5vh;
 }
 
 .barIcon > * {
     height: auto;
     width: auto;
     margin: 0 !important;
-    margin-top: 0.4vh !important;
+    margin-top: 1.4vh !important;
     color: #2e631c !important;
 }
 
 .statusBars > .progress {
-    margin: 5% !important;
+    margin: 8% !important;
     margin-left: 18% !important;
 }
