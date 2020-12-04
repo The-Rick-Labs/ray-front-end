@@ -22,7 +22,7 @@ class Settings extends React.Component {
 
 	reset() {
 		var database = firebase.database()
-		database.ref('/food').set({ food: 0 })
+		database.ref('/food').set({ food: 0, amount: 0 })
 		database.ref('/stress').set({ stress: 0 })
 	}
 
