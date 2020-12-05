@@ -113,7 +113,7 @@ class Ray extends React.Component {
 		})
 	}
 
-	/*setMood() {
+	setMood() {
 		switch (this.state.currentMood) {
 			case 'happyNeutral':
 				this.setState((state) => ({
@@ -139,7 +139,7 @@ class Ray extends React.Component {
 				}))
 				break
 		}
-	}*/
+	}
 
 	render() {
 		let quote = '';
