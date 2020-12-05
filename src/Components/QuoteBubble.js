@@ -77,9 +77,9 @@ class QuoteBubble extends React.Component {
 
     render() {
         return (
-            <div className="quoteBubble">
+            <span className="quoteBubble">
                 {this.state.currentQuote}
-            </div>
+            </span>
         )
     }
 }

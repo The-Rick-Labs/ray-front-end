@@ -20,7 +20,7 @@ class Home extends React.Component {
 			seconds: 3600,
 			availableStress: 0,
 			seconds2: 3600,
-			seconds3: 3600
+			seconds3: 3600,
 		}
 		//refills food over time
 		this.timer = 0
@@ -30,7 +30,6 @@ class Home extends React.Component {
 		this.timer2 = 0
 		this.startTimer2 = this.startTimer2.bind(this)
 		this.countDown2 = this.countDown2.bind(this)
-
 	}
 
 	componentDidMount() {
@@ -63,11 +62,10 @@ class Home extends React.Component {
 			}
 		})
 
-		window.setInterval(function(){
+		window.setInterval(function () {
 			fetch('http://192.168.2.36:8080/blink').then((res) => {})
 			console.log('blink')
-		},10000);
-
+		}, 10000)
 	}
 
 	componentWillUnmount() {

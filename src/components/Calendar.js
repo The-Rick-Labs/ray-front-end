@@ -73,7 +73,7 @@ class Calendar extends React.Component {
 		console.log('Complete')
 
 		var database = firebase.database()
-		database.ref('stress/stress').set(this.state.stress - 10)
+		database.ref('stress/stress').set(this.state.stress + 10)
 
 		var temp = []
 		for (var j = 0; j < this.state.events.length; ++j) {
@@ -109,12 +109,6 @@ class Calendar extends React.Component {
 						onClick={(e) => this.handleItemClick(e, 'reload')}
 					>
 						reload
-					</button>
-					<button
-						className='bigbutton'
-						onClick={(e) => this.handleItemClick(e, 'sign-in')}
-					>
-						sign-in
 					</button>
 				</div>
 

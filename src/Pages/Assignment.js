@@ -1,5 +1,7 @@
 import React from 'react'
 
+import BackButton from '../Components/BackButton'
+import RayStatus from '../Components/RayStatus'
 import TaskList from '../Components/TaskList'
 import QuoteBubble from '../Components/QuoteBubble'
 import Calendar from '../Components/Calendar'
@@ -34,10 +36,16 @@ class Assignment extends React.Component {
 
 	render() {
 		return (
-			<>
+			<div id='assignmentspage' className='page'>
+				<Ray id='assignmentray' />
+
 				<Calendar handleClick={this.handleClick} />
-				{this.state.message ? <QuoteBubble message={this.state.message} /> : ''}
-			</>
+				{this.state.message ? (
+					<QuoteBubble id='assignmentbubble' message={this.state.message} />
+				) : (
+					''
+				)}
+			</div>
 		)
 	}
 }

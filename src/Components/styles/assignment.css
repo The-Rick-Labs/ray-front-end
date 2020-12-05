@@ -3,3 +3,20 @@
 	flex-direction: row;
 	justify-content: space-around;
 }
+
+#assignmentspage {
+	background-image: url('../ray_images/rayAssignmentBG.png');
+	background-position: 0% 0%;
+	background-repeat: no-repeat;
+	background-size: cover;
+	justify-content: flex-end;
+}
+
+#assignmentspage img {
+	margin-left: 200px;
+	margin-top: 200px;
+}
+
+#assignmentspage span {
+	left: 30vw;
+}
