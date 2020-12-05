@@ -30,11 +30,16 @@ class Calendar extends React.Component {
 	}
 
 	Load() {
-		ApiCalendar.listUpcomingEvents(10)
-			.then(({ result }) => {
-				return result.items
+		fetch('http://10.0.0.103:8080/calendar')
+			.then((res) => {
+				return res.json()
+			})
+			.then((result) => {
+				console.log(result)
+				return result['items']
 			})
 			.then((items) => {
+				console.log(items)
 				this.setState({ events: items })
 
 				var temp = []
