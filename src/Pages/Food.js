@@ -5,8 +5,8 @@ import * as firebase from 'firebase/app'
 
 import BackButton from '../Components/BackButton'
 import FoodItem from '../Components/FoodItem'
-import DropArea from '../Components/DropArea'
 import RayStatus from '../Components/RayStatus'
+import Ray from '../Components/Ray'
 
 import food_item from '../Components/ray_images/food_item.png'
 import empty_food_item from '../Components/ray_images/empty_food_item.png'
@@ -140,7 +140,9 @@ class Food extends React.Component {
 			<div id='foodPage' className='page'>
 				<RayStatus />
 				<BackButton />					
-				<DropArea onMouseDragOver={(e) => this.onDragOver(e)} />
+				<div onDragOver={this.onDragOver}>
+                    <Ray />
+                </div>
 				<div id='foodContainer'>{fooditems}</div>
 			</div>
 		)
