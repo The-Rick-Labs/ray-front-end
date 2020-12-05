@@ -26,6 +26,9 @@ class Ray extends React.Component {
 		this.handleFaceClick = this.handleFaceClick.bind(this)
 		
 		this.readFB = this.readFB.bind(this)
+	}
+
+	componentDidMount() {
 		this.readFB()
 	}
 
@@ -90,21 +93,27 @@ class Ray extends React.Component {
 			if(snapshot.val() < 25) {
 				this.setState((state) => ({
 					currentMood: 'sad',
+					currentImageSrc: ray_sad,
 				}));
+				this.handleFaceClick(':[')
 			} else if(snapshot.val() < 50) {
 				this.setState((state) => ({
 					currentMood: 'mad',
+					currentImageSrc: ray_mad,
 				}));
+				this.handleFaceClick(':|')
 			} else {
 				this.setState((state) => ({
 					currentMood: 'happyNeutral',
+					currentImageSrc: ray_happyNeutral,
 				}));
+				this.handleFaceClick(':]')
 			}
-			this.setMood();
+			//this.setMood();
 		})
 	}
 
-	setMood() {
+	/*setMood() {
 		switch (this.state.currentMood) {
 			case 'happyNeutral':
 				this.setState((state) => ({
@@ -130,7 +139,7 @@ class Ray extends React.Component {
 				}))
 				break
 		}
-	}
+	}*/
 
 	render() {
 		let quote = '';
