@@ -17,19 +17,26 @@ class Home extends React.Component {
 		super(props)
 		this.state = {
 			availableFood: 0,
-			seconds: 3600,
-			availableStress: 0,
-			seconds2: 3600,
-			seconds3: 3600,
+			seconds: 120,
+			stress: 0,
+			seconds2: 30,
+			hunger: 0,
+			seconds3: 30,
 		}
 		//refills food over time
 		this.timer = 0
 		this.startTimer = this.startTimer.bind(this)
 		this.countDown = this.countDown.bind(this)
 
+		//updates stress over time
 		this.timer2 = 0
 		this.startTimer2 = this.startTimer2.bind(this)
 		this.countDown2 = this.countDown2.bind(this)
+
+		//updates hunger over time
+		this.timer3 = 0
+		this.startTimer3 = this.startTimer3.bind(this)
+		this.countDown3 = this.countDown3.bind(this)
 	}
 
 	componentDidMount() {
@@ -49,16 +56,22 @@ class Home extends React.Component {
 			firebase.initializeApp(firebaseConfig)
 		}
 		var database = firebase.database()
-		database.ref('food/food').on('value', (snapshot) => {
+		database.ref('food/amount').on('value', (snapshot) => {
 			this.setState({ availableFood: snapshot.val() })
 			if (snapshot.val() < 100) {
 				this.startTimer()
 			}
 		})
 		database.ref('stress/stress').on('value', (snapshot) => {
-			this.setState({ availableStress: snapshot.val() })
-			if (snapshot.val() < 100) {
+			this.setState({ stress: snapshot.val() })
+			if (snapshot.val() > 0) {
 				this.startTimer2()
+			}
+		})
+		database.ref('food/food').on('value', (snapshot) => {
+			this.setState({ hunger: snapshot.val() })
+			if (snapshot.val() > 0) {
+				this.startTimer3()
 			}
 		})
 
@@ -87,10 +100,10 @@ class Home extends React.Component {
 			clearInterval(this.timer)
 			this.timer = 0
 			this.setState({
-				seconds: 3600,
+				seconds: 120,
 			})
 			var database = firebase.database()
-			database.ref('food/food').set(this.state.availableFood + 1)
+			database.ref('food/amount').set(this.state.availableFood + 1)
 		}
 	}
 
@@ -109,10 +122,32 @@ class Home extends React.Component {
 			clearInterval(this.timer2)
 			this.timer2 = 0
 			this.setState({
-				seconds2: 3600,
+				seconds2: 30,
 			})
 			var database = firebase.database()
-			database.ref('stress/stress').set(this.state.availableStress + 1)
+			database.ref('stress/stress').set(this.state.stress-1)
+		}
+	}
+
+	startTimer3() {
+		if (this.timer3 === 0 && this.state.seconds3 > 0) {
+			this.timer3 = setInterval(this.countDown3, 1000)
+		}
+	}
+
+	countDown3() {
+		let current_seconds = this.state.seconds3 - 1
+		this.setState({
+			seconds3: current_seconds,
+		})
+		if (current_seconds === 0) {
+			clearInterval(this.timer3)
+			this.timer3 = 0
+			this.setState({
+				seconds3: 30,
+			})
+			var database = firebase.database()
+			database.ref('food/food').set(this.state.hunger-1)
 		}
 	}
 
