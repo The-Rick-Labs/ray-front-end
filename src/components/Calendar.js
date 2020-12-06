@@ -30,7 +30,7 @@ class Calendar extends React.Component {
 	}
 
 	Load() {
-		fetch('http://10.0.0.103:8080/calendar')
+		fetch('http://192.168.86.28:8080/calendar')
 			.then((res) => {
 				return res.json()
 			})

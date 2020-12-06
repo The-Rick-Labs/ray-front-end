@@ -10,6 +10,7 @@ import ray_mad from './ray_images/ray_mad.png'
 import ray_sad from './ray_images/ray_sad.png'
 import './styles/Ray.css'
 
+var ip = 'http://192.168.86.28:8080/'
 class Ray extends React.Component {
 	constructor(props) {
 		super(props)
@@ -39,13 +40,17 @@ class Ray extends React.Component {
 			console.log(':)')
 		} else if (face === ':[') {
 			uri = 'sad'
-		} else if(face === ':|'){
-			uri = 'meh'
+		} else if(face === '4'){
+			uri = '4'
+		} else if(face === '3'){
+			uri = '3'
+		} else if(face === '2'){
+			uri = '2'
 		} else {
 			uri = 'uwu'
 		}
 
-		fetch('http://192.168.2.36:8080/' + uri).then((res) => {
+		fetch(ip + uri).then((res) => {
 			this.setState({ faceClicked: face })
 		})
 	}
@@ -96,18 +101,35 @@ class Ray extends React.Component {
 					currentImageSrc: ray_sad,
 				}));
 				this.handleFaceClick(':[')
+				console.log('sad1')
 			} else if(snapshot.val() < 50) {
 				this.setState((state) => ({
 					currentMood: 'mad',
 					currentImageSrc: ray_mad,
 				}));
 				this.handleFaceClick(':|')
+				console.log('mad1')
 			} else {
 				this.setState((state) => ({
 					currentMood: 'happyNeutral',
 					currentImageSrc: ray_happyNeutral,
 				}));
 				this.handleFaceClick(':]')
+				console.log('happy1')
+			}
+			//this.setMood();
+		})
+
+		database.ref('food/food').on('value', (snapshot) => {
+			if(snapshot.val() < 25) {
+				this.handleFaceClick('4')
+				console.log('4')
+			} else if(snapshot.val() < 50) {
+				this.handleFaceClick('3')
+				console.log('3')
+			} else {
+				this.handleFaceClick('2')
+				console.log('2')
 			}
 			//this.setMood();
 		})
@@ -119,19 +141,16 @@ class Ray extends React.Component {
 				this.setState((state) => ({
 					currentImageSrc: ray_happyNeutral,
 				}))
-				this.handleFaceClick(':]')
 				break
 			case 'mad':
 				this.setState((state) => ({
 					currentImageSrc: ray_mad,
 				}))
-				this.handleFaceClick(':|')
 				break
 			case 'sad':
 				this.setState((state) => ({
 					currentImageSrc: ray_sad,
 				}))
-				this.handleFaceClick(':[')
 				break
 			default:
 				this.setState((state) => ({

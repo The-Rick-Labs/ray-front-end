@@ -11,7 +11,7 @@ import Settings from './Settings'
 import RayStatus from '../Components/RayStatus'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRobot, faUtensils, faGraduationCap, faCogs } from '@fortawesome/free-solid-svg-icons'
-
+var ip = 'http://192.168.86.28:3000/'
 class Home extends React.Component {
 	constructor(props) {
 		super(props)
@@ -33,7 +33,7 @@ class Home extends React.Component {
 	}
 
 	componentDidMount() {
-		fetch('http://192.168.2.36:8080/uwu').then((res) => {})
+		fetch(ip+'uwu').then((res) => {})
 		var firebaseConfig = {
 			apiKey: 'AIzaSyAImG5Vk9cS8Yi_UUNX9gwO-4_b1z2KAR0',
 			authDomain: 'rayside-94e8d.firebaseapp.com',
