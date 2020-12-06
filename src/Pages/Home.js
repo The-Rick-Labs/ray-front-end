@@ -125,7 +125,7 @@ class Home extends React.Component {
 				seconds2: 30,
 			})
 			var database = firebase.database()
-			database.ref('stress/stress').set(this.state.stress-1)
+			database.ref('stress/stress').set(this.state.stress-10)
 		}
 	}
 
@@ -147,7 +147,7 @@ class Home extends React.Component {
 				seconds3: 30,
 			})
 			var database = firebase.database()
-			database.ref('food/food').set(this.state.hunger-1)
+			database.ref('food/food').set(this.state.hunger-10)
 		}
 	}
 
