@@ -6,7 +6,7 @@
 </h1>
 
 <div align='center'>
-    <img src="./src/Components/ray_images/ray_happy.png" />
+    <img src="https://raw.githubusercontent.com/The-Rick-Labs/ray-front-end/main/src/Components/ray_images/ray_happyNeutral.png" />
 </div>
 
 <div align='center'>
@@ -16,7 +16,7 @@
 </div>
 
 <div align='center'>
-    Built by:
+    Built by
     <a href='https://github.com/abdurj'>Abdur</a> •
     <a href='https://github.com/AKhan-20'>Aishah</a> •
     <a href='https://github.com/bkkaggle'>Bilal</a> •
